@@ -1,10 +1,6 @@
 package adro.hms.test;
 
-
-
 import java.sql.*;
-
-
 
 public class TestDB {
 
