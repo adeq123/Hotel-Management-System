@@ -1,0 +1,1 @@
+<div align="center">&COPY;[2018] Copyrights by ADRO</div>

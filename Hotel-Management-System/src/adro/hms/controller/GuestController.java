@@ -28,4 +28,12 @@ public class GuestController {
 		
 		return "guestList";
 	}
+	
+	@GetMapping("/showAddGuest")
+	public String showAddGuest(Model theModel) {
+		
+		Guest guest = new Guest();
+		theModel.addAttribute(guest);
+		return "addGuestForm";
+	}
 }
