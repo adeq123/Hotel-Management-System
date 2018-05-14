@@ -2,11 +2,14 @@ package adro.hms.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,23 +29,20 @@ public class Guest {
 	@Column(name = "last_name")
 	private String lastName;
 	
-	@Column(name = "gender")	
-	private String gender;
-	
-	@Column(name = "id_type")
-	private String idType;
-	
 	@Column(name = "id_number")	
 	private String idNumber;
 	
 	@Column(name = "phone_number")
 	private String phoneNumber;
 	
-	@Column(name = "address")
-	private String address;
-	
-	@Column(name = "room")
-	private String room;
+	@ManyToOne(	cascade = {
+					CascadeType.DETACH,
+					CascadeType.MERGE,
+					CascadeType.PERSIST,
+					CascadeType.REFRESH
+					})
+	@JoinColumn(name = "room_id")
+	private Room room;
 	
 	@Column(name = "number_of_nights")
 	private String numberOfNights;
@@ -58,16 +58,13 @@ public class Guest {
 	}
 
 	
-	public Guest(String firstName, String lastName, String gender, String idType, String idNumber, String phoneNumber,
-			String address, String room, String numberOfNights, String checkoutDate) {
+	public Guest(String firstName, String lastName, String idNumber, String phoneNumber,
+			 Room room, String numberOfNights, String checkoutDate) {
 	
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.gender = gender;
-		this.idType = idType;
 		this.idNumber = idNumber;
 		this.phoneNumber = phoneNumber;
-		this.address = address;
 		this.room = room;
 		this.numberOfNights = numberOfNights;
 		this.checkoutDate = checkoutDate;
@@ -100,22 +97,6 @@ public class Guest {
 		this.lastName = lastName;
 	}
 
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
-	public String getIdType() {
-		return idType;
-	}
-
-	public void setIdType(String idType) {
-		this.idType = idType;
-	}
-
 	public String getIdNumber() {
 		return idNumber;
 	}
@@ -132,19 +113,11 @@ public class Guest {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getRoom() {
+	public Room getRoom() {
 		return room;
 	}
 
-	public void setRoom(String room) {
+	public void setRoom(Room room) {
 		this.room = room;
 	}
 
@@ -165,6 +138,6 @@ public class Guest {
 	}
 	
 	public String toString() {
-		return "[Guest: id = " + id + ", firstName = " + firstName + ", lastName = " + lastName + ", IDtype = " + idType + ", idNumber = " + idNumber +"]";
+		return "[Guest: id = " + id + ", firstName = " + firstName + ", lastName = " + lastName + ", idNumber = " + idNumber +"]";
 	}
 }

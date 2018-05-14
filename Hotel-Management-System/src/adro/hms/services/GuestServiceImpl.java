@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import adro.hms.DAO.GuestDAO;
 import adro.hms.DAO.GuestDAOImpl;
+import adro.hms.DAO.RoomDAO;
 import adro.hms.entity.Guest;
+import adro.hms.entity.Room;
 
 @Service
 public class GuestServiceImpl implements GuestService{
@@ -17,10 +19,19 @@ public class GuestServiceImpl implements GuestService{
 	@Autowired
 	private GuestDAO guestDAO;
 	
+	@Autowired
+	private RoomDAO roomDAO;
+	
 	@Override
 	@Transactional
 	public List<Guest> getGuests() {
 		return guestDAO.getGuests();
+	}
+
+	@Override
+	@Transactional
+	public List<Room> getVacantRooms() {
+		return roomDAO.getRooms();
 	}
 
 }
