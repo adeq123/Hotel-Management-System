@@ -33,4 +33,11 @@ public class RoomDAOImpl implements RoomDAO {
 		return rooms;
 	}
 
+	@Override
+	public Room getRoomById(int id) {
+		Session session = sessionFactory.getCurrentSession();
+		Room room = session.get(Room.class, id);
+		return room;
+	}
+
 }

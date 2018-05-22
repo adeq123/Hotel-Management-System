@@ -1,17 +1,23 @@
 package adro.hms.controller;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import adro.hms.entity.Guest;
 import adro.hms.entity.Room;
 import adro.hms.services.GuestService;
-import adro.hms.services.GuestServiceImpl;
+
 
 @Controller
 @RequestMapping("/guest")
@@ -35,12 +41,38 @@ public class GuestController {
 
 		Guest guest = new Guest();
 		List<Room> vacantRooms = guestService.getVacantRooms();
-		if(vacantRooms == null || vacantRooms.size() == 0) {
-			vacantRooms.add(new Room(0, "No vacant rooms", true, null));
-		}
+		LinkedHashMap<String, Room> vacantRoomsMap = populateRoomsMap(vacantRooms);
+
 		theModel.addAttribute("guest", guest);
-		theModel.addAttribute("vacantRooms", vacantRooms);
+		theModel.addAttribute("vacantRoomsMap", vacantRoomsMap);
 		
 		return "addGuestForm";
+	}
+	
+	@PostMapping("/saveGuest")
+	public String saveGuest (@ModelAttribute("guest") Guest theGuest, BindingResult binding) {
+
+		System.out.println(theGuest.getRoom().getNumber());
+		guestService.addGuest(theGuest);
+		return "redirect:/guest/list";
+	}
+	
+
+	/**
+	 * Maps the rooms list to to Map where a key is the room id (from DataBase) and the value is the room itself.
+	 * In that configuration, we will get an id out of the drop down in the form.
+	 * @param rooms
+	 * @return
+	 */
+	private LinkedHashMap<String, Room> populateRoomsMap(List<Room> rooms){
+		
+		if(rooms == null || rooms.size() == 0) {
+			rooms.add(new Room(0, "No vacant rooms", true, null));
+		}
+		LinkedHashMap<String, Room> roomsMap = new LinkedHashMap<String, Room>();
+		for(Room room : rooms) {
+			roomsMap.put(Integer.toString(room.getId()), room);
+		}
+		return roomsMap;
 	}
 }

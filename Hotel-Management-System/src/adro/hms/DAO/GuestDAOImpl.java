@@ -27,4 +27,11 @@ public class GuestDAOImpl implements GuestDAO {
 		return guests;
 	}
 
+	@Override
+	public void addGuest(Guest theGuest) {
+		Session session = sessionFactory.getCurrentSession();
+		session.saveOrUpdate(theGuest);
+		
+	}
+
 }

@@ -1,5 +1,7 @@
 package adro.hms.services;
 
-public interface RoomService {
+import adro.hms.entity.Room;
 
+public interface RoomService {
+	public Room getRoomById(int id) ;
 }

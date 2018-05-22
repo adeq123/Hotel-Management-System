@@ -8,6 +8,6 @@ public interface RoomDAO {
 
 	public List<Room> getRooms();
 	public List<Room> getVacantRooms();
-	
+	public Room getRoomById(int id);
 
 }

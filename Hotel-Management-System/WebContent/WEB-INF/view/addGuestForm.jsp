@@ -9,6 +9,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Hotel Management System</title>
+ <!--Data picker code  -->
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker({ dateFormat: "yy-mm-dd" });
+  } );
+  
+
+  </script>
 
 <!-- refrence our style sheet  -->
 <link type="text/css" rel="stylesheet"
@@ -40,11 +52,9 @@
 							page="include/guestLeftMenu.jsp" />
 					</td>
 					<td>
-						<!--Main content  --> 
-						<!--Add guest form  --> 
-						<div style = "topText">Please Enter the guest data: </div>
-						<form:form
-							action="saveGuest" modelAttribute="guest" method="POST">
+						<!--Main content  --> <!--Add guest form  -->
+						<div style="">Please Enter the guest data:</div> 
+						<form:form action="saveGuest" modelAttribute="guest" method="POST">
 
 							<!--  need to associate this data with customer id -->
 							<form:hidden path="id" />
@@ -54,38 +64,43 @@
 									<tr>
 										<td><label>First name:</label></td>
 										<td><form:input path="firstName" /></td>
-										<td/>
+										<td />
 										<td><label>Last name:</label></td>
 										<td><form:input path="lastName" /></td>
 									</tr>
-									
+
 									<tr>
 										<td><label>ID number:</label></td>
 										<td><form:input path="idNumber" /></td>
-										<td/>
+										<td />
 										<td><label>Phone number:</label></td>
 										<td><form:input path="phoneNumber" /></td>
 									</tr>
-									
+
 									<tr>
 										<td><label>Room:</label></td>
-										<td><form:options items = "${vacantRooms}"/></td>
-
+										<td>
+										 <form:select path="room">
+											<form:options items="${vacantRoomsMap}" />
+											<form:hidden path="id" />
+										</form:select>
+										</td>
 										<td/>
 										<td><label>Number of nights:</label></td>
 										<td><form:input path="numberOfNights" /></td>
 									</tr>
 									<tr>
 										<td><label>Checkout date:</label></td>
-										<td><form:input path="checkoutDate" /></td>
+										<%-- <td><form:input path="checkoutDate" /></td> --%>
+										<td><form:input  path="checkoutDate" id="datepicker" /></td>
 									</tr>
 									<tr>
-									<br>
+										<br>
 									<tr>
-									<td/>
+										<td />
 										<td><label></label></td>
 										<td><input type="submit" value="Save" class="save" /></td>
-									
+
 									</tr>
 									</tr>
 								</tbody>

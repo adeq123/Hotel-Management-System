@@ -8,4 +8,6 @@ public interface GuestService {
 
 	public List<Guest> getGuests ();
 	public List<Room> getVacantRooms();
+	public void addGuest(Guest theGuest);
+	public Room getRoomById(int id);
 }
