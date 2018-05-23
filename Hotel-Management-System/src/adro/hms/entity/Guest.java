@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="guest")
@@ -24,16 +26,25 @@ public class Guest {
 	private int id;
 	
 	@Column(name = "first_name")
+	@NotNull(message = "is required")
+	@Size(min = 1, message = "is required")
 	private String firstName;
 	
+	@NotNull(message = "is required")
+	@Size(min = 1, message = "is required")
 	@Column(name = "last_name")
 	private String lastName;
 	
+	@NotNull(message = "is required")
+	@Size(min = 1, message = "is required")
 	@Column(name = "id_number")	
 	private String idNumber;
 	
+	@NotNull(message = "is required")
+	@Size(min = 1, message = "is required")
 	@Column(name = "phone_number")
 	private String phoneNumber;
+	
 	
 	@ManyToOne(	cascade = {
 					CascadeType.DETACH,
@@ -44,9 +55,13 @@ public class Guest {
 	@JoinColumn(name = "room_id")
 	private Room room;
 	
+	@NotNull(message = "is required")
+	@Size(min = 1, message = "is required")
 	@Column(name = "number_of_nights")
 	private String numberOfNights;
 	
+	@NotNull(message = "is required")
+	@Size(min = 1, message = "is required")
 	@Column(name = "checkout_date")
 	private String checkoutDate;
 	
@@ -140,4 +155,6 @@ public class Guest {
 	public String toString() {
 		return "[Guest: id = " + id + ", firstName = " + firstName + ", lastName = " + lastName + ", idNumber = " + idNumber +"]";
 	}
+	
+	  
 }

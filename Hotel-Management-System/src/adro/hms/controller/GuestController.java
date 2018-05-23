@@ -3,6 +3,8 @@ package adro.hms.controller;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import adro.hms.entity.Guest;
 import adro.hms.entity.Room;
@@ -45,18 +48,26 @@ public class GuestController {
 
 		theModel.addAttribute("guest", guest);
 		theModel.addAttribute("vacantRoomsMap", vacantRoomsMap);
-		
+
 		return "addGuestForm";
 	}
-	
-	@PostMapping("/saveGuest")
-	public String saveGuest (@ModelAttribute("guest") Guest theGuest, BindingResult binding) {
 
-		System.out.println(theGuest.getRoom().getNumber());
-		guestService.addGuest(theGuest);
-		return "redirect:/guest/list";
+	@PostMapping("/saveGuest")
+	public ModelAndView saveGuest (@Valid @ModelAttribute("guest") Guest theGuest, BindingResult binding) {
+
+		if(binding.hasErrors()) {
+			List<Room> vacantRooms = guestService.getVacantRooms();
+			LinkedHashMap<String, Room> vacantRoomsMap = populateRoomsMap(vacantRooms);
+			
+			return new ModelAndView("addGuestForm", "vacantRoomsMap", vacantRoomsMap);
+
+		}else {
+			guestService.addGuest(theGuest);
+			return new ModelAndView("redirect:/guest/list");
+			
+		}
 	}
-	
+
 
 	/**
 	 * Maps the rooms list to to Map where a key is the room id (from DataBase) and the value is the room itself.
@@ -65,7 +76,7 @@ public class GuestController {
 	 * @return
 	 */
 	private LinkedHashMap<String, Room> populateRoomsMap(List<Room> rooms){
-		
+
 		if(rooms == null || rooms.size() == 0) {
 			rooms.add(new Room(0, "No vacant rooms", true, null));
 		}

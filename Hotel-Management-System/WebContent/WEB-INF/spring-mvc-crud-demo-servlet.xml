@@ -15,8 +15,7 @@
 	<!-- Add support for component scanning -->
 	<context:component-scan base-package="adro.hms" />
 
-	<!-- Add support for conversion, formatting and validation support 
-	 <mvc:annotation-driven/>-->
+	 <!-- Add support for conversion, formatting and validation support --> 
 	 
 	<mvc:annotation-driven conversion-service="conversionService" />
 

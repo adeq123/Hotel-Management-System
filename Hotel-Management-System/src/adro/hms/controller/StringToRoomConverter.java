@@ -6,9 +6,10 @@ import org.springframework.core.convert.converter.Converter;
 import adro.hms.entity.Room;
 import adro.hms.services.GuestService;
 import adro.hms.services.GuestServiceImpl;
+
 /**
- * Custom Converter to convert the Room class to the String representation and register it in the Spring.
- * @author Anna
+ * Custom class to Convert from String (representation of room) to Room class representation. The class is registered in Spring. 
+ * @author ADRO
  *
  */
 public class StringToRoomConverter implements  Converter<String,Room>{
