@@ -84,7 +84,8 @@
 									<tr>
 										<td><label>Room:</label></td>
 										<td><form:select path="room">
-												<form:options items="${vacantRoomsMap}" />
+												<form:option value="${selectedRoom.getId()}" label = "${selectedRoom.getStandard()} ${selectedRoom.getNumber()}"/>
+												<form:options items="${roomsMap}" />
 												<form:hidden path="id" />
 											</form:select> <form:errors path="idNumber" cssClass="error" /></td>
 

@@ -1,5 +1,6 @@
 package adro.hms.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -14,6 +15,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -26,23 +28,24 @@ public class Guest {
 	private int id;
 	
 	@Column(name = "first_name")
-	@NotNull(message = "is required")
-	@Size(min = 1, message = "is required")
+	@NotNull
+	@Pattern(regexp = "^[a-zA-Z]{1,100}", message = "Letters only!")
 	private String firstName;
 	
-	@NotNull(message = "is required")
-	@Size(min = 1, message = "is required")
-	@Column(name = "last_name")
-	private String lastName;
 	
-	@NotNull(message = "is required")
-	@Size(min = 1, message = "is required")
+	@Column(name = "last_name")
+	@NotNull
+	@Pattern(regexp = "^[a-zA-Z]{1,100}", message = "Letters only!")
+	private String lastName;
+
 	@Column(name = "id_number")	
+	@NotNull
+	@Pattern(regexp = "^[a-zA-Z0-9]{1,30}", message = "Letters and numbers only!")
 	private String idNumber;
 	
-	@NotNull(message = "is required")
-	@Size(min = 1, message = "is required")
 	@Column(name = "phone_number")
+	@NotNull
+	@Pattern(regexp = "^[0-9]{1,16}", message = "Numbers only!")
 	private String phoneNumber;
 	
 	
@@ -50,23 +53,26 @@ public class Guest {
 					CascadeType.DETACH,
 					CascadeType.MERGE,
 					CascadeType.PERSIST,
-					CascadeType.REFRESH
+					CascadeType.REFRESH,
+					CascadeType.ALL
 					})
 	@JoinColumn(name = "room_id")
 	private Room room;
 	
-	@NotNull(message = "is required")
-	@Size(min = 1, message = "is required")
+	@NotNull
 	@Column(name = "number_of_nights")
+	@Pattern(regexp = "^[0-9]{1,3}", message = "Numbers only! max 999")
 	private String numberOfNights;
 	
-	@NotNull(message = "is required")
-	@Size(min = 1, message = "is required")
+	@NotNull
 	@Column(name = "checkout_date")
-	private String checkoutDate;
+	private LocalDate checkoutDate;
 	
-	//@Temporal(TemporalType.DATE)
+	//
 	//private java.util.Date checkoutDate;
+	
+	@Column(name = "is_checkedout")
+	private boolean isCheckedout;
 	
 	public Guest() {
 		
@@ -74,7 +80,7 @@ public class Guest {
 
 	
 	public Guest(String firstName, String lastName, String idNumber, String phoneNumber,
-			 Room room, String numberOfNights, String checkoutDate) {
+			 Room room, String numberOfNights, LocalDate checkoutDate) {
 	
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -144,16 +150,27 @@ public class Guest {
 		this.numberOfNights = numberOfNights;
 	}
 
-	public String getCheckoutDate() {
+	public LocalDate getCheckoutDate() {
 		return checkoutDate;
 	}
 
-	public void setCheckoutDate(String checkoutDate) {
+	public void setCheckoutDate(LocalDate checkoutDate) {
 		this.checkoutDate = checkoutDate;
 	}
 	
+	
+	public boolean isCheckedout() {
+		return isCheckedout;
+	}
+
+
+	public void setCheckedout(boolean isCheckedout) {
+		this.isCheckedout = isCheckedout;
+	}
+
+
 	public String toString() {
-		return "[Guest: id = " + id + ", firstName = " + firstName + ", lastName = " + lastName + ", idNumber = " + idNumber +"]";
+		return "[Guest: id = " + id + ", firstName = " + firstName + ", lastName = " + lastName + ", idNumber = " + idNumber + ", isCheckedout = " + isCheckedout +"]";
 	}
 	
 	  

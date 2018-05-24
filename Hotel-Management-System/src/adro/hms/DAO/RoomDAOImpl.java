@@ -4,11 +4,13 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import adro.hms.entity.Guest;
 import adro.hms.entity.Room;
 
 @Repository
@@ -28,7 +30,7 @@ public class RoomDAOImpl implements RoomDAO {
 	@Override
 	public List<Room> getVacantRooms() {
 		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery("from Room r where r.isOccupied = 0 order by number", Room.class);
+		Query query = session.createQuery("select r from Room r where r.isOccupied = 0 order by r.number", Room.class);
 		List<Room> rooms = query.getResultList();
 		return rooms;
 	}
@@ -37,7 +39,24 @@ public class RoomDAOImpl implements RoomDAO {
 	public Room getRoomById(int id) {
 		Session session = sessionFactory.getCurrentSession();
 		Room room = session.get(Room.class, id);
+		Hibernate.initialize(room.getOccupants()); //otherwise lazy fetch excpetion - this object would not be available outside of transaction
 		return room;
 	}
+
+	@Override
+	public void saveUpdateRoom(Room room) {
+		Session session = sessionFactory.getCurrentSession();
+		session.saveOrUpdate(room);
+		
+	}
+
+	@Override
+	public List<Room> getOccupiedRooms() {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("select r from Room r where r.isOccupied = 1 order by r.number", Room.class);
+		List<Room> rooms = query.getResultList();
+		return rooms;
+	}
+
 
 }

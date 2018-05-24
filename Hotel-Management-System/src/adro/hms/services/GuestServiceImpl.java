@@ -23,20 +23,26 @@ public class GuestServiceImpl implements GuestService{
 	
 	@Override
 	@Transactional
-	public List<Guest> getGuests() {
-		return guestDAO.getGuests();
+	public List<Guest> getActualGuests() {
+		return guestDAO.getActualGuests();
+	}
+	
+	@Override
+	@Transactional
+	public Guest getGuestById(int id) {
+		return guestDAO.getGuestById(id);
 	}
 
 	@Override
 	@Transactional
 	public List<Room> getVacantRooms() {
-		return roomDAO.getRooms();
+		return roomDAO.getVacantRooms();
 	}
 
 	@Override
 	@Transactional
-	public void addGuest(Guest theGuest) {
-		guestDAO.addGuest(theGuest);
+	public void saveUpdateGuest(Guest theGuest) {
+		guestDAO.saveUpdateGuest(theGuest);
 		
 	}
 
@@ -46,5 +52,26 @@ public class GuestServiceImpl implements GuestService{
 		return roomDAO.getRoomById(id);
 	}
 
+	@Override
+	@Transactional
+	public void saveUpdateRoom(Room theRoom) {
+		roomDAO.saveUpdateRoom(theRoom);
+		
+	}
+
+	@Override
+	@Transactional
+	public List<Guest> getArchivedGuests() {
+		
+		return guestDAO.getCheckedoutGuests();
+	}
+
+	@Override
+	@Transactional
+	public List<Room> getOccupiedRooms() {
+		return roomDAO.getOccupiedRooms();
+	}
+
+	
 
 }

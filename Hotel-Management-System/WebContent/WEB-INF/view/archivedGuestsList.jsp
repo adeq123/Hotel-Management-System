@@ -49,21 +49,10 @@
 								<th>Last Name</th>
 								<th>Room</th>
 								<th>Phone Number</th>
-								<th>Expected checkout date</th>
-								<th>Checkout</th>
+								<th>Checkout date</th>
 							</tr>
 							<!-- loop over and print out customers  -->
 							<c:forEach var="tempGuest" items="${guestList}">
-
-								<!--construct an cheout link with customer id  -->
-								<c:url var="checkoutLink" value="/guest/checkout">
-									<c:param name="guestId" value="${tempGuest.id}" />
-								</c:url>
-
-								<!--construct an update link with customer id  -->
-								<c:url var="updateLink" value="/guest/update">
-									<c:param name="guestId" value="${tempGuest.id}" />
-								</c:url>
 								
 								<tr>
 									<td>${tempGuest.firstName}</td>
@@ -71,7 +60,6 @@
 									<td>${tempGuest.room}</td>
 									<td>${tempGuest.phoneNumber}</td>
 									<td>${tempGuest.checkoutDate}</td>
-									<td><a href="${checkoutLink}">Checkout</a> | <a href="${updateLink}">Update</a></td>
 								</tr>
 							</c:forEach>
 						</table>

@@ -36,7 +36,8 @@ public class Room {
 					CascadeType.MERGE,
 					CascadeType.PERSIST,
 					CascadeType.REFRESH
-					})
+					}
+	)
 	private List<Guest> occupants;
 
 	public Room() {

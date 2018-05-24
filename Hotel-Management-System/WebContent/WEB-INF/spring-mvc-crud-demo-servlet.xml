@@ -25,6 +25,7 @@
 			<set>
 				<bean class="adro.hms.controller.StringToRoomConverter" />
 				<bean class="adro.hms.controller.RoomToStringConverter" />
+				<bean class="adro.hms.controller.StringToLocalDateConverter" />
 			</set>
 		</property>
 	</bean>
@@ -75,6 +76,12 @@
 
 	<!-- Add support for reading web resoruces: css, images, js, etc ... -->
 	<mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
+	
+	<!--Load custom resource -->
+	<bean id = "messageSource" class = "org.springframework.context.support.ResourceBundleMessageSource">
+	<property name="basenames" value="adro.hms.resources/message_en"></property>
+	
+	</bean>
 </beans>
 
 
