@@ -91,6 +91,8 @@ public class GuestController {
 		
 		theGuest.setCheckoutDate(localDate);
 		theGuest.setCheckedout(true);
+		theGuest.setRoom(null);
+		theGuest.setLastCheckedoutRoom(theRoom);
 		theRoom.getOccupants().remove(theGuest);
 		if(theRoom.getOccupants().size() == 0) {
 			theRoom.setOccupied(false);
@@ -115,6 +117,15 @@ public class GuestController {
 
 		theModel.addAttribute("guest", theGuest);
 		theModel.addAttribute("roomsMap", vacantRoomsMap);
+		theModel.addAttribute("selectedRoom", selectedRoom);
+		return "addGuestForm";
+	}
+	
+	@GetMapping("/checkin")
+	public String checkinGuestToSpecificRoom(@RequestParam("roomId") int theRoomId, Model theModel) {
+		Guest theGuest = new Guest();
+		Room selectedRoom = guestService.getRoomById(theRoomId);
+		theModel.addAttribute("guest", theGuest);
 		theModel.addAttribute("selectedRoom", selectedRoom);
 		return "addGuestForm";
 	}

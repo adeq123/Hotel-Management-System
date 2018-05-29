@@ -78,7 +78,7 @@ public class Room {
 		this.standard = standard;
 	}
 
-	public boolean isOccupied() {
+	public boolean getIsOccupied() {
 		return isOccupied;
 	}
 

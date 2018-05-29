@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -54,8 +55,7 @@ public class Guest {
 					CascadeType.MERGE,
 					CascadeType.PERSIST,
 					CascadeType.REFRESH,
-					CascadeType.ALL
-					})
+						})
 	@JoinColumn(name = "room_id")
 	private Room room;
 	
@@ -68,11 +68,14 @@ public class Guest {
 	@Column(name = "checkout_date")
 	private LocalDate checkoutDate;
 	
-	//
-	//private java.util.Date checkoutDate;
 	
 	@Column(name = "is_checkedout")
 	private boolean isCheckedout;
+	
+	
+	@OneToOne(cascade = {})
+	@JoinColumn(name = "last_checkedout_room_id")
+	private Room lastCheckedoutRoom; 
 	
 	public Guest() {
 		
@@ -80,7 +83,7 @@ public class Guest {
 
 	
 	public Guest(String firstName, String lastName, String idNumber, String phoneNumber,
-			 Room room, String numberOfNights, LocalDate checkoutDate) {
+			 Room room, String numberOfNights, LocalDate checkoutDate, Room lastCheckedoutRoom) {
 	
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -89,6 +92,7 @@ public class Guest {
 		this.room = room;
 		this.numberOfNights = numberOfNights;
 		this.checkoutDate = checkoutDate;
+		this.lastCheckedoutRoom = lastCheckedoutRoom;
 	}
 
 
@@ -166,6 +170,16 @@ public class Guest {
 
 	public void setCheckedout(boolean isCheckedout) {
 		this.isCheckedout = isCheckedout;
+	}
+
+
+	public Room getLastCheckedoutRoom() {
+		return lastCheckedoutRoom;
+	}
+
+
+	public void setLastCheckedoutRoom(Room lastCheckedoutRoom) {
+		this.lastCheckedoutRoom = lastCheckedoutRoom;
 	}
 
 

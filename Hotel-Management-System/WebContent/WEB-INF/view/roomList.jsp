@@ -38,29 +38,33 @@
 				<table border = "1" height = "100%" width="100%" align="left">
 					<td width = "100px">
 						<!--Left Side Menu  -->
-						<jsp:include page="include/guestLeftMenu.jsp"/>
+						<jsp:include page="include/roomLeftMenu.jsp"/>
 					</td>
 					<td>
 						<!--Main content  -->
 						<!--table with guests  -->
-						<div>Checkedout guests list: </div><br>
 						<table>
 							<tr>
-								<th>First Name</th>
-								<th>Last Name</th>
-								<th>Room</th>
-								<th>Phone Number</th>
-								<th>Checkout date</th>
+								<th>Number</th>
+								<th>Standard</th>
+								<th>Occupied</th>
+								<th>Check in</th>
+
 							</tr>
 							<!-- loop over and print out customers  -->
-							<c:forEach var="tempGuest" items="${guestList}">
+							<c:forEach var="tempRoom" items="${roomList}">
+
+								<!--construct an cheout link with room id  -->
+								<c:url var="checkinLink" value="/guest/checkin">
+									<c:param name="roomId" value="${tempRoom.id}" />
+								</c:url>
+
 								
 								<tr>
-									<td>${tempGuest.firstName}</td>
-									<td>${tempGuest.lastName}</td>
-									<td>${tempGuest.lastCheckedoutRoom}</td>
-									<td>${tempGuest.phoneNumber}</td>
-									<td>${tempGuest.checkoutDate}</td>
+									<td>${tempRoom.number}</td>
+									<td>${tempRoom.standard}</td>
+									 <td>${tempRoom.isOccupied}</td> 
+									<td><a href="${checkinLink}">Check in</a></td>
 								</tr>
 							</c:forEach>
 						</table>

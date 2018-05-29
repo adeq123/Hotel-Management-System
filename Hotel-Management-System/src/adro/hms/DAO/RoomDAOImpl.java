@@ -55,6 +55,7 @@ public class RoomDAOImpl implements RoomDAO {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery("select r from Room r where r.isOccupied = 1 order by r.number", Room.class);
 		List<Room> rooms = query.getResultList();
+		rooms.forEach(r -> Hibernate.initialize(r.getOccupants())); //otherwise lazy fetch excpetion - this object would not be available outside of transaction)
 		return rooms;
 	}
 
