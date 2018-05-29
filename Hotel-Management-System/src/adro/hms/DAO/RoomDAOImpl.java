@@ -20,7 +20,7 @@ public class RoomDAOImpl implements RoomDAO {
 	SessionFactory sessionFactory;
 	
 	@Override
-	public List<Room> getRooms() {
+	public List<Room> getAllRooms() {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery("from Room order by number", Room.class);
 		List<Room> rooms = query.getResultList();
