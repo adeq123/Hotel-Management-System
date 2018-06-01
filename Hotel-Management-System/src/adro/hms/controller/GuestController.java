@@ -60,9 +60,10 @@ public class GuestController {
 	}
 
 	@PostMapping("/saveGuest")
-	public String saveGuest (@Valid @ModelAttribute("guest") Guest theGuest, BindingResult binding, Model theModel) {
+	public String saveGuest (@Valid @ModelAttribute("guest") Guest theGuest, BindingResult bindingResult, Model theModel) {
 
-		if(binding.hasErrors()) {
+		if(bindingResult.hasErrors()) {
+			System.out.println(bindingResult);
 			List<Room> vacantRooms = guestService.getVacantRooms();
 			Room firstRoomOnList = vacantRooms.get(0);
 			LinkedHashMap<String, Room> vacantRoomsMap = populateRoomsMap(vacantRooms);
@@ -73,6 +74,7 @@ public class GuestController {
 
 		}else {
 			theGuest.getRoom().setOccupied(true);
+			theGuest.setCheckinDate(LocalDate.now());
 			guestService.saveUpdateRoom(theGuest.getRoom());
 			guestService.saveUpdateGuest(theGuest);
 			return "redirect:/guest/list";
@@ -87,7 +89,6 @@ public class GuestController {
 		Room theRoom = guestService.getRoomById(theGuest.getRoom().getId());
 		LocalDate localDate = LocalDate.now();
 		localDate.format(DateTimeFormatter.ISO_LOCAL_DATE);
-		
 		
 		theGuest.setCheckoutDate(localDate);
 		theGuest.setCheckedout(true);

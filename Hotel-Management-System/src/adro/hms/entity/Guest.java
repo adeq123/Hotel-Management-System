@@ -1,8 +1,6 @@
 package adro.hms.entity;
 
 import java.time.LocalDate;
-import java.util.Date;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,11 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+
 
 @Entity
 @Table(name="guest")
@@ -58,16 +54,14 @@ public class Guest {
 						})
 	@JoinColumn(name = "room_id")
 	private Room room;
-	
-	@NotNull
-	@Column(name = "number_of_nights")
-	@Pattern(regexp = "^[0-9]{1,3}", message = "Numbers only! max 999")
-	private String numberOfNights;
+
 	
 	@NotNull
 	@Column(name = "checkout_date")
 	private LocalDate checkoutDate;
 	
+	@Column(name = "checkin_date")
+	private LocalDate checkinDate;
 	
 	@Column(name = "is_checkedout")
 	private boolean isCheckedout;
@@ -83,14 +77,14 @@ public class Guest {
 
 	
 	public Guest(String firstName, String lastName, String idNumber, String phoneNumber,
-			 Room room, String numberOfNights, LocalDate checkoutDate, Room lastCheckedoutRoom) {
+			 Room room, LocalDate checkinDate, LocalDate checkoutDate, Room lastCheckedoutRoom) {
 	
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.idNumber = idNumber;
 		this.phoneNumber = phoneNumber;
 		this.room = room;
-		this.numberOfNights = numberOfNights;
+		this.checkinDate = checkinDate;
 		this.checkoutDate = checkoutDate;
 		this.lastCheckedoutRoom = lastCheckedoutRoom;
 	}
@@ -146,13 +140,7 @@ public class Guest {
 		this.room = room;
 	}
 
-	public String getNumberOfNights() {
-		return numberOfNights;
-	}
 
-	public void setNumberOfNights(String numberOfNights) {
-		this.numberOfNights = numberOfNights;
-	}
 
 	public LocalDate getCheckoutDate() {
 		return checkoutDate;
@@ -182,7 +170,37 @@ public class Guest {
 		this.lastCheckedoutRoom = lastCheckedoutRoom;
 	}
 
+	public LocalDate getCheckinDate() {
+		return checkinDate;
+	}
 
+
+	public void setCheckinDate(LocalDate checkinDate) {
+		this.checkinDate = checkinDate;
+	}
+
+
+	@Override
+	public boolean equals(Object o) {
+	    // self check
+	    if (this == o)
+	        return true;
+	    // null check
+	    if (o == null)
+	        return false;
+	    // type check and cast
+	    if (getClass() != o.getClass())
+	        return false;
+	    Guest guest = (Guest) o;
+	    // field comparison
+	    return guest.getFirstName().equals(this.firstName) && 
+	    		guest.getLastName().equals(this.lastName) && 
+	    		guest.getId() == this.id && 
+	    		guest.getIdNumber().equals(this.idNumber) && 
+	    		guest.getPhoneNumber().equals(this.phoneNumber)
+	    		;
+	}
+	
 	public String toString() {
 		return "[Guest: id = " + id + ", firstName = " + firstName + ", lastName = " + lastName + ", idNumber = " + idNumber + ", isCheckedout = " + isCheckedout +"]";
 	}

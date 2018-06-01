@@ -43,21 +43,23 @@
 					<td>
 						<!--Main content  -->
 						<!--table with guests  -->
+						<div>Hotel guests list:</div>
+						<br>
 						<table>
 							<tr>
-								<th>First Name</th>
-								<th>Last Name</th>
+								<th>First name</th>
+								<th>Last name</th>
 								<th>Room</th>
-								<th>Phone Number</th>
-								<th>Expected checkout date</th>
-								<th>Checkout</th>
+								<th>Phone</th>
+								<th>Checkout date</th>
+								<th>Action</th>
 							</tr>
 							<!-- loop over and print out customers  -->
 							<c:forEach var="tempGuest" items="${guestList}">
 
 								<!--construct an cheout link with customer id  -->
-								<c:url var="checkoutLink" value="/guest/checkout">
-									<c:param name="guestId" value="${tempGuest.id}" />
+								<c:url var="checkoutLink" value="/guest/checkout/${tempGuest.id}">
+									
 								</c:url>
 
 								<!--construct an update link with customer id  -->
@@ -78,6 +80,7 @@
 					</td>
 					<td width = "100px">
 						<!--Right Side Menu  -->
+						<jsp:include page="include/rightMenu.jsp"/>
 					</td>
 				</table>
 			</td>

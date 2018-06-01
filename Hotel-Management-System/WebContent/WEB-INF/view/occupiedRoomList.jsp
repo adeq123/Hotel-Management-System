@@ -43,6 +43,7 @@
 					<td>
 						<!--Main content  -->
 						<!--table with guests  -->
+						<div>Occupied rooms: </div> <br>
 						<table>
 							<tr>
 								<th>Number </th>
@@ -77,6 +78,7 @@
 					</td>
 					<td width = "100px">
 						<!--Right Side Menu  -->
+						<jsp:include page="include/rightMenu.jsp"/>
 					</td>
 				</table>
 			</td>

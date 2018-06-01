@@ -46,15 +46,15 @@
 		<tr>
 			<td height="350px">
 				<!-- Page content table -->
-				<table border="1" height="100%" width="75%" align="left">
+				<table border="1" height="100%" width="100%" align="center">
 					<td width="100px">
 						<!--Left Side Menu  --> <jsp:include
 							page="include/guestLeftMenu.jsp" />
 					</td>
 					<td>
 						<!--Main content  --> <!--Add guest form  -->
-						<div style="">Please Enter the guest data:</div> <form:form
-							action="saveGuest" modelAttribute="guest" method="POST">
+						<div>Please Enter the guest data:</div> 
+						<form:form 	action="saveGuest" modelAttribute="guest" method="POST">
 
 							<!--  need to associate this data with customer id -->
 							<form:hidden path="id" />
@@ -84,18 +84,14 @@
 									<tr>
 										<td><label>Room:</label></td>
 										<td><form:select path="room">
-												<form:option value="${selectedRoom.getId()}" label = "${selectedRoom.getStandard()} ${selectedRoom.getNumber()}"/>
+												<form:option value="${selectedRoom.getId()}"
+													label="${selectedRoom.getStandard()} ${selectedRoom.getNumber()}" />
 												<form:options items="${roomsMap}" />
 												<form:hidden path="id" />
 											</form:select> <form:errors path="idNumber" cssClass="error" /></td>
 
 										<td />
-										<td><label>Number of nights:</label></td>
-										<td><form:input path="numberOfNights" /> <form:errors
-												path="numberOfNights" cssClass="error" /></td>
 
-									</tr>
-									<tr>
 										<td><label>Checkout date:</label></td>
 										<%-- <td><form:input path="checkoutDate" /></td> --%>
 										<td><form:input path="checkoutDate" id="datepicker" /> <form:errors
@@ -116,6 +112,7 @@
 					</td>
 					<td width="100px">
 						<!--Right Side Menu  -->
+						<jsp:include page="include/rightMenu.jsp"/>
 					</td>
 				</table>
 			</td>

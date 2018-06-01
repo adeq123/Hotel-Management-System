@@ -1,6 +1,7 @@
 package adro.hms.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,7 @@ public class CommingCheckoutsController {
 	public String commingCheckoutsList(Model theModel) {
 
 		List <Guest> commingCheckouts = commingCheckOutsService.getCommingCheckouts();
+		
 		theModel.addAttribute("guestList", commingCheckouts);
 		return "guestList";
 

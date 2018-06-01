@@ -28,21 +28,31 @@ public class HotelStatusController {
 
 		Integer numberOfRooms = 0;
 		Integer numberOfOccupiedRooms = 0;
-		Integer numberOfFreeRooms = 0;
+		Integer numberOfVacantRooms = 0;
+		Integer numberOfVacantStandardRooms = 0;
+		Integer numberOfVacantBusinessRooms = 0;
+		Integer numberOfVacantPremiumRooms = 0;
 
 		for(Room theRoom : roomList) {
 			numberOfRooms ++;
 			if(theRoom.getIsOccupied()) {
 				numberOfOccupiedRooms ++;	
 			}else {
-				numberOfFreeRooms ++;
+				numberOfVacantRooms ++;
+				if(theRoom.getStandard().equals("standard")) {
+					numberOfVacantStandardRooms ++;
+				}else if(theRoom.getStandard().equals("business")) {
+					numberOfVacantBusinessRooms ++;
+				}else {
+					numberOfVacantPremiumRooms ++;
+				}
 			}
 
 		}
-		
+
 		Integer numberOfGuests = 0;
 		Integer upcommingCheckOuts = 0;
-		
+
 		for(Guest theGuest : guestList) {
 			if(!theGuest.isCheckedout()) {
 				numberOfGuests++;
@@ -54,10 +64,13 @@ public class HotelStatusController {
 		}
 		theModel.addAttribute("numberOfRooms", numberOfRooms);
 		theModel.addAttribute("numberOfOccupiedRooms", numberOfOccupiedRooms);
-		theModel.addAttribute("numberOfFreeRooms", numberOfFreeRooms);
+		theModel.addAttribute("numberOfVacantRooms", numberOfVacantRooms);
+		theModel.addAttribute("numberOfVacantStandardRooms", numberOfVacantStandardRooms);
+		theModel.addAttribute("numberOfVacantBusinessRooms", numberOfVacantBusinessRooms);
+		theModel.addAttribute("numberOfVacantPremiumRooms", numberOfVacantPremiumRooms);
 		theModel.addAttribute("numberOfGuests", numberOfGuests);
 		theModel.addAttribute("upcommingCheckOuts", upcommingCheckOuts);
-		
+
 		return "hotelStatus";
 	}
 }

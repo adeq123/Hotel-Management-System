@@ -1,10 +1,111 @@
 @charset "UTF-8";
 
-html, body{
-	padding:0px; 
-	font-family:Verdana, Arial, Helvetica, sans-serif;
+html, body {
+	padding: 0px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 
-.error{
+.error {
 	color: #FF0000;
+}
+
+
+table.main  {
+	margin: 0 auto;
+	align: center;
+	text-align: center;
+	width: 75%;
+	height: 90%; 
+}
+
+ table.content {
+    border-top: 1px solid black;
+ }
+
+
+table.status {
+	text-align: left;
+
+}
+
+div.todo{
+	text-align: left;
+	font: italic 12px/16px Georgia, serif;
+}
+
+div.todoMainList.todo{
+	text-align: left;
+	font: italic 20px/30px Georgia, serif;
+}
+.done{
+    border: none;
+    color: BlueViolet;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+}
+tab1 {
+	padding-left: 4em;
+}
+
+tab2 {
+	padding-left: 8em;
+}
+
+tab3 {
+	padding-left: 12em;
+}
+
+tab4 {
+	padding-left: 16em;
+}
+
+tab5 {
+	padding-left: 20em;
+}
+
+tab6 {
+	padding-left: 24em;
+}
+
+tab7 {
+	padding-left: 28em;
+}
+
+tab8 {
+	padding-left: 32em;
+}
+
+tab9 {
+	padding-left: 36em;
+}
+
+tab10 {
+	padding-left: 40em;
+}
+
+tab11 {
+	padding-left: 44em;
+}
+
+tab12 {
+	padding-left: 48em;
+}
+
+tab13 {
+	padding-left: 52em;
+}
+
+tab14 {
+	padding-left: 56em;
+}
+
+tab15 {
+	padding-left: 60em;
+}
+
+tab16 {
+	padding-left: 64em;
 }

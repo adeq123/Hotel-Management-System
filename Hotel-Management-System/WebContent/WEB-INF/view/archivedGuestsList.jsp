@@ -43,13 +43,14 @@
 					<td>
 						<!--Main content  -->
 						<!--table with guests  -->
-						<div>Checkedout guests list: </div><br>
+						<div>Checked out guests list: </div><br>
 						<table>
 							<tr>
 								<th>First Name</th>
 								<th>Last Name</th>
 								<th>Room</th>
 								<th>Phone Number</th>
+								<th>Check in date</th>
 								<th>Checkout date</th>
 							</tr>
 							<!-- loop over and print out customers  -->
@@ -60,6 +61,7 @@
 									<td>${tempGuest.lastName}</td>
 									<td>${tempGuest.lastCheckedoutRoom}</td>
 									<td>${tempGuest.phoneNumber}</td>
+									<td>${tempGuest.checkinDate}</td>
 									<td>${tempGuest.checkoutDate}</td>
 								</tr>
 							</c:forEach>
@@ -67,6 +69,7 @@
 					</td>
 					<td width = "100px">
 						<!--Right Side Menu  -->
+						<jsp:include page="include/rightMenu.jsp"/>
 					</td>
 				</table>
 			</td>
