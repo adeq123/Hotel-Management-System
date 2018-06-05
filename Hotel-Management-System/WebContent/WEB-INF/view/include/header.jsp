@@ -1,1 +1,2 @@
-<h1 align = "center">Hotel Management System</h1>
+
+<h1 class="header"  >Hotel Management System</h1>

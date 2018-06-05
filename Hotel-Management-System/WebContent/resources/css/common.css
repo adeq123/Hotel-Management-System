@@ -1,15 +1,64 @@
 @charset "UTF-8";
 
-html, body {
-	padding: 0px;
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-}
-
 .error {
 	color: #FF0000;
 }
 
+html, body {
+	padding: 0px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	background: white;
+}
 
+/*Header  */
+h1.header {
+	text-align: center;
+	color: white;
+}
+
+tr.header{
+	background-color: black;
+}
+
+/*Upper menu  */
+tr.upperMenu{
+	background-color: black;
+}
+
+div.uppermenuText{
+	color: white;
+	 font-weight: bold;
+}
+
+
+/* unvisited link */
+a.uppermenu:link {
+    color: yellow;
+     font-weight: bold;
+      text-decoration: none;
+}
+
+/* visited link */
+a.uppermenu:visited {
+    color: white;
+     text-decoration: none;
+    
+}
+
+/* mouse over link */
+a.uppermenu:hover {
+    color: yellow;
+     font-weight: bold;
+      text-decoration: none;
+}
+
+/* selected link */
+a.uppermenu:active {
+    color: yellow;
+     font-weight: bold;
+      text-decoration: none;
+}
+/*Main table all views setting  */
 table.main  {
 	margin: 0 auto;
 	align: center;
@@ -18,14 +67,55 @@ table.main  {
 	height: 90%; 
 }
 
+
+/*Main table content cell  */
  table.content {
-    border-top: 1px solid black;
+      height: 100%; 
+      width: 100%;
  }
 
+/*description font  */
 
-table.status {
+div.description{
+	font-weight: bold;
+	align: right;
+	font-size: 18px;
+	padding: 3px 3px;
+}
+
+/*Hotel status  */
+table.statusLeft, table.statusRight{
 	text-align: left;
+	table-layout: auto;
+	width: 100%;
+	border-collapse: collapse;
+	line-height: 200%;
+}
 
+td.statusTable {
+	vertical-align: top;
+	-webkit-box-shadow: 14px 14px 30px 0px rgba(0, 0, 0, 0.28);
+	-moz-box-shadow: 14px 14px 30px 0px rgba(0, 0, 0, 0.28);
+	box-shadow: 14px 14px 30px 0px rgba(0, 0, 0, 0.28);
+}
+
+/*To do   */
+td.toDoShadow {
+	-webkit-box-shadow: 14px 14px 30px 0px rgba(0, 0, 0, 0.28);
+	-moz-box-shadow: 14px 14px 30px 0px rgba(0, 0, 0, 0.28);
+	box-shadow: 14px 14px 30px 0px rgba(0, 0, 0, 0.28);
+}
+div.toDoHead{
+	font: bold 14px/18px Georgia, serif;
+	text-align: left;
+	padding: 3px 3px;
+}
+
+
+td.toDoSideMenu {
+	align: center;
+	line-height: 200%;
+	table-layout: auto;
 }
 
 div.todo{
@@ -33,18 +123,91 @@ div.todo{
 	font: italic 12px/16px Georgia, serif;
 }
 
-div.todoMainList.todo{
+table.toDoForm{
+		table-layout: auto;
+	font-size: 14px;
 	text-align: left;
-	font: italic 20px/30px Georgia, serif;
 }
+
+
+td.mainContent{
+	vertical-align: top;
+	align: center;
+}
+
+/*Left menu  */
+div.leftmenuText{
+	color: black;
+	font-size: 14px;
+}
+
+
+/* unvisited link */
+a.leftmenu:link {
+    color: black;
+     font-weight: bold;
+      text-decoration: none;
+      
+}
+
+/* visited link */
+a.leftmenu:visited {
+    color: black;
+     text-decoration: none;
+    
+}
+
+/* mouse over link */
+a.leftmenu:hover {
+    color: gray;
+     font-weight: bold;
+      text-decoration: none;
+}
+
+/* selected link */
+a.leftmenu:active {
+    color: black;
+     font-weight: bold;
+      text-decoration: none;
+}
+/*Guest menu  */
+
+table.guestList{
+	table-layout: auto;
+	font-size: 14px;
+	text-align: center;
+
+}
+
+/*add guest form table  */
+table.addGuestForm{
+	
+	line-height: 250%;
+}
+
+/*room list  */
+table.roomList{
+	table-layout: auto;
+	font-size: 14px;
+	text-align: center;
+
+}
+/*general to have gentle line between rows  */
+th.list, td.list{
+	border-bottom: 1px solid #ddd;
+	padding: 5px;
+}
+
+tr.list:hover {background-color: #f5f5f5;}
+
 .done{
     border: none;
     color: BlueViolet;
-    padding: 10px 10px;
+    padding: 3px 3px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 20px;
+    font-size: 10px;
 }
 tab1 {
 	padding-left: 4em;

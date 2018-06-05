@@ -15,18 +15,15 @@
 	href="${pageContext.request.contextPath}/resources/css/common.css" />
 </head>
 
-<!--link to background  -->
-<c:url var="backGroundLink"
-	value="/resources/images/hotel-page-background.jpg"></c:url>
 
-<body background="${backGroundLink}">
-	<table border="1" height="90%" width="75%" align="center">
-		<tr>
+<body>
+	<table class="main">
+		<tr class="header">
 			<td height="80px">
 				<!-- HEADER  --> <jsp:include page="include/header.jsp" />
 			</td>
 		</tr>
-		<tr>
+		<tr class="upperMenu">
 			<td height="25px">
 				<!-- Upper Menu  --> <jsp:include page="include/upperMenu.jsp" />
 			</td>
@@ -34,46 +31,61 @@
 		<tr>
 			<td height="350px">
 				<!-- Page content table -->
-				<table border="1" height="100%" width="100%" align="left">
-					<td width="100px">
-						<!--Left Side Menu  -->
-					</td>
-					<td>
-						<!--Main content  --> <!--table with guests  -->
-						<div>To do list:</div>
-						<table>
-							<c:forEach var="tempToDo" items="${toDo}">
+				<table class="content">
+					<tr>
+						<td width="100px">
+							<!--Left Side Menu  -->
+						</td>
+
+						<td class="mainContent" align="center">
+							<!--Main content  --> <!--table with guests  -->
+							<table class="toDoForm">
 								<tr>
-									<td>
-										<div class="todoMainList">${tempToDo.task}</div>
+									<td class = "toDoShadow">
+										<div class="description">
+											<br>To be done...:<br>
+										</div>
+										<table>
+											<c:forEach var="tempToDo" items="${toDo}">
+												<tr class =  "list">
+													<td class="list">
+														<div class="todoMainList">${tempToDo.task}</div>
+													</td>
+													<td class="list"><form:form
+															action="delete/?id=${tempToDo.id}" method="POST"
+															modelAttribute="toDo">
+
+															<input type="submit" value="&#10004" class="done" />
+
+														</form:form></td>
+												</tr>
+											</c:forEach>
+										</table>
 									</td>
-									<td><form:form action="delete/?id=${tempToDo.id}"
-											method="POST" modelAttribute="toDo">
+									<td><tab1/> </td>
+									<td class = "toDoShadow">
+										<table >
+											<tr>
+												<td>Add new task:</td>
+											</tr>
+											<tr>
+												<td><form:form action="add" modelAttribute="todo"
+														method="POST">
+														<form:input path="task" />
+														<form:errors path="task" cssClass="error" />
+														<input type="submit" value="Add" class="add" />
+													</form:form></td>
+											</tr>
+										</table>
 
-											<input type="submit" value="&#10004" class="done" />
+									</td>
 
-										</form:form></td>
 								</tr>
-							</c:forEach>
-						</table>
-
-						<table>
-							<tr>
-								<td>
-								Add new task:
-								</td>
-							</tr>
-							<tr>
-							<td>
-							<form:input path=""/>
-							</td>
-							</tr>
-						</table>
-
-					</td>
-					<td width="100px">
-						<!--Right Side Menu  -->
-					</td>
+							</table>
+						<td width="100px">
+							<!--Right Side Menu  -->
+						</td>
+					</tr>
 				</table>
 			</td>
 		</tr>

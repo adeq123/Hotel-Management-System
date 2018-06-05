@@ -27,18 +27,15 @@
 	href="${pageContext.request.contextPath}/resources/css/common.css" />
 </head>
 
-<!--link to background  -->
-<c:url var="backGroundLink"
-	value="/resources/images/hotel-page-background.jpg"></c:url>
 
-<body background="${backGroundLink}">
-	<table border="1" height="90%" width="75%" align="center">
-		<tr>
+<body>
+	<table class="main">
+		<tr class="header">
 			<td height="80px">
 				<!-- HEADER  --> <jsp:include page="include/header.jsp" />
 			</td>
 		</tr>
-		<tr>
+		<tr class="upperMenu">
 			<td height="25px">
 				<!-- Upper Menu  --> <jsp:include page="include/upperMenu.jsp" />
 			</td>
@@ -46,21 +43,23 @@
 		<tr>
 			<td height="350px">
 				<!-- Page content table -->
-				<table border="1" height="100%" width="100%" align="center">
+				<table class="content">
 					<td width="100px">
-						<!--Left Side Menu  --> <jsp:include
+						<!--Left Side Menu  --> 
+						<jsp:include
 							page="include/guestLeftMenu.jsp" />
 					</td>
-					<td>
-						<!--Main content  --> <!--Add guest form  -->
-						<div>Please Enter the guest data:</div> 
+					<td align="center">
+						<!--Main content  --> 
+						<!--Add guest form  -->
+						<div class="description">Please enter the guest data:</div> 
 						<form:form 	action="saveGuest" modelAttribute="guest" method="POST">
 
 							<!--  need to associate this data with customer id -->
 							<form:hidden path="id" />
 
-							<table>
-								<tbody>
+							<table class="addGuestForm">
+								<tbody >
 									<tr>
 										<td><label>First name:</label></td>
 										<td><form:input path="firstName" /> <form:errors

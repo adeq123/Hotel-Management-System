@@ -15,18 +15,15 @@
 	href="${pageContext.request.contextPath}/resources/css/common.css" />
 </head>
 
-<!--link to background  -->
-<c:url var="backGroundLink" value = "/resources/images/hotel-page-background.jpg"></c:url>
-
-<body background = "${backGroundLink}">
-	<table border="1" height = "90%" width="75%" align="center">
-		<tr>
+<body>
+	<table class="main">
+		<tr  class="header">
 			<td height="80px">
 				<!-- HEADER  -->
 				<jsp:include page="include/header.jsp"/>
 			</td>
 		</tr>
-		<tr>
+		<tr class="upperMenu">
 			<td height="25px">
 				<!-- Upper Menu  -->
 				<jsp:include page="include/upperMenu.jsp"/>
@@ -35,24 +32,27 @@
 		<tr>
 			<td height="350px">
 				<!-- Page content table -->
-				<table border = "1" height = "100%" width="100%" align="left">
+				<table class="content">
 					<td width = "100px">
 						<!--Left Side Menu  -->
 						<jsp:include page="include/guestLeftMenu.jsp"/>
 					</td>
-					<td>
+					<td style="vertical-align: baseline ;" align="center">
 						<!--Main content  -->
 						<!--table with guests  -->
-						<div>Hotel guests list:</div>
+						
 						<br>
-						<table>
+						<table class="guestList">
+						<tr>
+						<div class="description">Hotel guests list:</div><br>
+						</tr>
 							<tr>
-								<th>First name</th>
-								<th>Last name</th>
-								<th>Room</th>
-								<th>Phone</th>
-								<th>Checkout date</th>
-								<th>Action</th>
+								<th class =  "list">First name</th>
+								<th class =  "list">Last name</th>
+								<th class =  "list">Room</th>
+								<th class =  "list">Phone</th>
+								<th class =  "list">Checkout date</th>
+								<th class =  "list">Action</th>
 							</tr>
 							<!-- loop over and print out customers  -->
 							<c:forEach var="tempGuest" items="${guestList}">
@@ -67,13 +67,13 @@
 									<c:param name="guestId" value="${tempGuest.id}" />
 								</c:url>
 								
-								<tr>
-									<td>${tempGuest.firstName}</td>
-									<td>${tempGuest.lastName}</td>
-									<td>${tempGuest.room}</td>
-									<td>${tempGuest.phoneNumber}</td>
-									<td>${tempGuest.checkoutDate}</td>
-									<td><a href="${checkoutLink}">Checkout</a> | <a href="${updateLink}">Update</a></td>
+								<tr class="list">
+									<td class =  "list">${tempGuest.firstName}</td>
+									<td class =  "list">${tempGuest.lastName}</td>
+									<td class =  "list">${tempGuest.room}</td>
+									<td class =  "list">${tempGuest.phoneNumber}</td>
+									<td class =  "list">${tempGuest.checkoutDate}</td>
+									<td class =  "list"><a href="${checkoutLink}">Checkout</a> | <a href="${updateLink}">Update</a></td>
 								</tr>
 							</c:forEach>
 						</table>

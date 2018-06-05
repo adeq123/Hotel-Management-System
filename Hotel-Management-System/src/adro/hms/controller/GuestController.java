@@ -144,13 +144,20 @@ public class GuestController {
 	@GetMapping("/checkInToOccupiedRoom")
 	public String checkInToOccupiedRoom(Model theModel) {
 		
+		Room room = null;
 		Guest guest = new Guest();
+		LinkedHashMap<String, Room> occupiedRoomsMap = null;
 		List<Room> occupiedRooms = guestService.getOccupiedRooms();
-		LinkedHashMap<String, Room> occupiedRoomsMap = populateRoomsMap(occupiedRooms);
-
+		if(!occupiedRooms.isEmpty()) {
+			room = occupiedRooms.get(0);
+			occupiedRoomsMap = populateRoomsMap(occupiedRooms);
+		}
+		
+		
+		theModel.addAttribute("selectedRoom", room); //the room to be shown as first on the list
 		theModel.addAttribute("guest", guest);
 		theModel.addAttribute("roomsMap", occupiedRoomsMap);
-		theModel.addAttribute("selectedRoom", occupiedRoomsMap.remove(occupiedRooms.get(0))); //the room to be shown as first on the list
+	
 		return "addGuestForm";
 	}
 	/**

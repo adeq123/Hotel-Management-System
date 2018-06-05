@@ -12,15 +12,17 @@
 <body>
 	<!-- loop over and print out tasks  -->
 
-	<table>
+	<table class = "toDoSideMenu">
+	<div class = "toDoHead">To be done:</div>	
 		<c:forEach var="tempToDo" items="${toDo}">
 			<tr>
 				<td>
-					<div class="todo">${tempToDo.task}</div>
+					<li><div class="todo">${tempToDo.task}</div></li>
 				</td>
 
 			</tr>
 		</c:forEach>
+		
 	</table>
 
 </body>

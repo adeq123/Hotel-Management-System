@@ -15,18 +15,14 @@
 	href="${pageContext.request.contextPath}/resources/css/common.css" />
 </head>
 
-<!--link to background  -->
-<c:url var="backGroundLink"
-	value="/resources/images/hotel-page-background.jpg"></c:url>
-
-<body background="${backGroundLink}">
+<body>
 	<table class="main">
-		<tr>
-			<td height="80px" >
+		<tr class="header">
+			<td height="80px">
 				<!-- HEADER  --> <jsp:include page="include/header.jsp" />
 			</td>
 		</tr>
-		<tr>
+		<tr class="upperMenu">
 			<td height="25px">
 				<!-- Upper Menu  --> <jsp:include page="include/upperMenu.jsp" />
 			</td>
@@ -34,73 +30,108 @@
 		<tr>
 			<td height="350px">
 				<!-- Page content table --> <!-- //<div style="overflow-x: auto;"> -->
-				<table height="100%" width="100%" class="content">
-					<td width="100px">
-						<!--Left Side Menu  --> <%-- <jsp:include page="include/guestLeftMenu.jsp" /> --%>
-					</td>
-					<td>
-						<!--Main content  --> <!--table with guests  -->
-						<div align = "left">Hotel status:</div> <br>
-						<table class="status">
-							<!-- Heading  -->
-							<tr>
-								<th>Rooms</th>
-								<th><tab4/></th>
-								<th>Guests</th>
-								<th></th>
+				<table  class="content">
+					<tr>
+						<td width = "100px">
+							<!--Left Side Menu  --> <%-- <jsp:include page="include/guestLeftMenu.jsp" /> --%>
+						</td>
+						<td >
+							<!--Main content  --> <!--table with guests  -->
+							<!-- <div class="description">Hotel status:</div> <br> -->
+							<!--internal table  -->
+							<table style="vertical-align: top;">
+							<tr >
+							<td  colspan="4"><div class="description">Hotel status:</div> </td>
 							</tr>
-							<!-- First row  -->
-							<tr>
-								<td>Number of rooms: </td>
-								<td>${numberOfRooms}</td>
-								<td>Number of Guests: </td>
-								<td>${numberOfGuests}</td>
+								<tr>
+								<!--internal table cell one  -->
+									<td class="statusTable">
+									<!--status table  -->
+										<table class="statusLeft">
+											<!-- Heading  -->
+											<tr>
+												<th>Rooms:</th>
+												<th></th>
+											</tr>
+											<!-- First row  -->
+											<tr>
+												<td>Number of rooms:</td>
+												<td><div style="font-weight: bold">
+														<tab1/>${numberOfRooms}</div></td>
 
-							</tr>
-							<tr>
-								<td>Occupied rooms: </td>
-								<td>${numberOfOccupiedRooms}</td>
-								<td>Upcoming checkouts: </td>
-								<td>${upcommingCheckOuts}</td>
 
-							</tr>
+											</tr>
+											<tr>
+												<td>Occupied rooms:</td>
+												<td><div style="font-weight: bold">
+														<tab1/>${numberOfOccupiedRooms}</div></td>
 
-							<tr>
-								<td>Free rooms:</td>
-								<td>${numberOfVacantRooms}</td>
-								<td></td>
-								<td></td>
 
-							</tr>
-							<tr>
-								<td>Free standard rooms:</td>
-								<td>${numberOfVacantStandardRooms}</td>
-								<td></td>
-								<td></td>
+											</tr>
 
-							</tr>
-							<tr>
-								<td>Free business rooms:</td>
-								<td>${numberOfVacantBusinessRooms}</td>
-								<td></td>
-								<td></td>
+											<tr>
+												<td>Free rooms:</td>
+												<td><div style="font-weight: bold">
+														<tab1/>${numberOfVacantRooms}</div></td>
 
-							</tr>
 
-							<tr>
-								<td>Free premium rooms:</td>
-								<td>${numberOfVacantPremiumRooms}</td>
-								<td></td>
-								<td></td>
+											</tr>
+											<tr>
+												<td>Free standard rooms:</td>
+												<td><div style="font-weight: bold">
+														<tab1/>${numberOfVacantStandardRooms}</div></td>
 
-							</tr>
 
-						</table>
-					</td>
-					<td width="100px">
-						<!--Right Side Menu  -->
-						<jsp:include page="include/rightMenu.jsp"/>
-					</td>
+											</tr>
+											<tr>
+												<td>Free business rooms:</td>
+												<td><div style="font-weight: bold">
+														<tab1/>${numberOfVacantBusinessRooms}</div></td>
+
+
+											</tr>
+
+											<tr>
+												<td>Free premium rooms:</td>
+												<td><div style="font-weight: bold">
+														<tab1/>${numberOfVacantPremiumRooms}</div></td>
+
+
+											</tr>
+
+										</table>
+									</td>
+									
+									<!--internal table cell two  -->
+									<td><th><tab1/></th></td>
+									
+									<!--internal table cell three  -->
+									<td class="statusTable">
+										<table class="statusRight">
+											<tr >
+												<th>Guests:</th>
+												<th></th>
+											</tr>
+											<tr>
+												<td>Number of Guests:</td>
+												<td><div style="font-weight: bold">
+														<tab1/>${numberOfGuests}</div></td>
+											</tr>
+											<tr>
+												<td>Upcoming checkouts:</td>
+												<td><div style="font-weight: bold">
+														<tab1/>${upcommingCheckOuts}</div></td>
+											</tr>
+										</table>
+									</td>
+							</table>
+						</td>
+
+						<td width="100px">
+							<!--Right Side Menu  --> <jsp:include
+								page="include/rightMenu.jsp" />
+						</td>
+					</tr>
 				</table> <!-- </div> -->
 			</td>
 		</tr>
