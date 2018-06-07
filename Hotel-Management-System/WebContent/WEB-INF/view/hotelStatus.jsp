@@ -30,23 +30,23 @@
 		<tr>
 			<td height="350px">
 				<!-- Page content table --> <!-- //<div style="overflow-x: auto;"> -->
-				<table  class="content">
+				<table class="content">
 					<tr>
-						<td width = "100px">
+						<td width="100px">
 							<!--Left Side Menu  --> <%-- <jsp:include page="include/guestLeftMenu.jsp" /> --%>
 						</td>
-						<td >
-							<!--Main content  --> <!--table with guests  -->
-							<!-- <div class="description">Hotel status:</div> <br> -->
+						<td>
+							<!--Main content  --> <!--table with guests  --> <!-- <div class="description">Hotel status:</div> <br> -->
 							<!--internal table  -->
-							<table style="vertical-align: top;">
-							<tr >
-							<td  colspan="4"><div class="description">Hotel status:</div> </td>
-							</tr>
+							<table style="vertical-align: top;" align="center">
 								<tr>
-								<!--internal table cell one  -->
+									<td colspan="4"><div class="description">Hotel
+											status:</div></td>
+								</tr>
+								<tr>
+									<!--internal table cell one  -->
 									<td class="statusTable">
-									<!--status table  -->
+										<!--status table  -->
 										<table class="statusLeft">
 											<!-- Heading  -->
 											<tr>
@@ -57,14 +57,14 @@
 											<tr>
 												<td>Number of rooms:</td>
 												<td><div style="font-weight: bold">
-														<tab1/>${numberOfRooms}</div></td>
+														<tab1 />${numberOfRooms}</div></td>
 
 
 											</tr>
 											<tr>
 												<td>Occupied rooms:</td>
 												<td><div style="font-weight: bold">
-														<tab1/>${numberOfOccupiedRooms}</div></td>
+														<tab1 />${numberOfOccupiedRooms}</div></td>
 
 
 											</tr>
@@ -72,21 +72,21 @@
 											<tr>
 												<td>Free rooms:</td>
 												<td><div style="font-weight: bold">
-														<tab1/>${numberOfVacantRooms}</div></td>
+														<tab1 />${numberOfVacantRooms}</div></td>
 
 
 											</tr>
 											<tr>
 												<td>Free standard rooms:</td>
 												<td><div style="font-weight: bold">
-														<tab1/>${numberOfVacantStandardRooms}</div></td>
+														<tab1 />${numberOfVacantStandardRooms}</div></td>
 
 
 											</tr>
 											<tr>
 												<td>Free business rooms:</td>
 												<td><div style="font-weight: bold">
-														<tab1/>${numberOfVacantBusinessRooms}</div></td>
+														<tab1 />${numberOfVacantBusinessRooms}</div></td>
 
 
 											</tr>
@@ -94,37 +94,40 @@
 											<tr>
 												<td>Free premium rooms:</td>
 												<td><div style="font-weight: bold">
-														<tab1/>${numberOfVacantPremiumRooms}</div></td>
+														<tab1 />${numberOfVacantPremiumRooms}</div></td>
 
 
 											</tr>
 
 										</table>
 									</td>
-									
+
 									<!--internal table cell two  -->
-									<td><th><tab1/></th></td>
-									
+									<td>
+									<th><tab1 /></th>
+									</td>
+
 									<!--internal table cell three  -->
 									<td class="statusTable">
 										<table class="statusRight">
-											<tr >
+											<tr>
 												<th>Guests:</th>
 												<th></th>
 											</tr>
 											<tr>
 												<td>Number of Guests:</td>
 												<td><div style="font-weight: bold">
-														<tab1/>${numberOfGuests}</div></td>
+														<tab1 />${numberOfGuests}</div></td>
 											</tr>
 											<tr>
 												<td>Upcoming checkouts:</td>
 												<td><div style="font-weight: bold">
-														<tab1/>${upcommingCheckOuts}</div></td>
+														<tab1 />${upcommingCheckOuts}</div></td>
 											</tr>
 										</table>
 									</td>
 							</table>
+							<div class="error"> <b>${noAdminLoggedIn}</b></div>
 						</td>
 
 						<td width="100px">

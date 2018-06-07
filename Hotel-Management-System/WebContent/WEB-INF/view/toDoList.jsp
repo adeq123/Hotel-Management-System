@@ -29,7 +29,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td height="350px">
+			<td height="350px" >
 				<!-- Page content table -->
 				<table class="content">
 					<tr>
@@ -37,7 +37,7 @@
 							<!--Left Side Menu  -->
 						</td>
 
-						<td class="mainContent" align="center">
+						<td class="mainContent" align="center"  style="vertical-align: middle;">
 							<!--Main content  --> <!--table with guests  -->
 							<table class="toDoForm">
 								<tr>

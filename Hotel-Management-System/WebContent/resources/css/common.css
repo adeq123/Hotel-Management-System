@@ -16,6 +16,42 @@ h1.header {
 	color: white;
 }
 
+div.loginOut{
+	float: right; 
+	margin-top: -30px;
+	padding: 7px;
+	color: red;
+	font-size: 12px;
+}
+
+a.loginOut:link {
+    color: red;
+     font-weight: bold;
+      text-decoration: none;
+}
+
+/* visited link */
+a.loginOut:visited {
+    color: red;
+    font-weight: bold;
+     text-decoration: none;
+    
+}
+
+/* mouse over link */
+a.loginOut:hover {
+    color: yellow;
+     font-weight: bold;
+      text-decoration: none;
+}
+
+/* selected link */
+a.loginOut:active {
+    color: yellow;
+     font-weight: bold;
+      text-decoration: none;
+}
+
 tr.header{
 	background-color: black;
 }
@@ -101,6 +137,7 @@ td.statusTable {
 
 /*To do   */
 td.toDoShadow {
+	
 	-webkit-box-shadow: 14px 14px 30px 0px rgba(0, 0, 0, 0.28);
 	-moz-box-shadow: 14px 14px 30px 0px rgba(0, 0, 0, 0.28);
 	box-shadow: 14px 14px 30px 0px rgba(0, 0, 0, 0.28);
@@ -126,10 +163,20 @@ div.todo{
 table.toDoForm{
 		table-layout: auto;
 	font-size: 14px;
+	align: center;
 	text-align: left;
 }
 
+/*login  */
+td.loginForm{
+	padding: 8px;
+}
 
+table.loginForm{
+	font-size: 14px;
+	font-weight: bold;
+ 
+}
 td.mainContent{
 	vertical-align: top;
 	align: center;

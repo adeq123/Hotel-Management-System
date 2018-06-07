@@ -11,6 +11,6 @@
 |
 <a href="${pageContext.request.contextPath}/toDo/" class = "uppermenu">To Do</a>
 |
-<a href="#" class = "uppermenu">Administration</a>
+<a href="${pageContext.request.contextPath}/administration/" class = "uppermenu">Administration</a>
 |
 </div>

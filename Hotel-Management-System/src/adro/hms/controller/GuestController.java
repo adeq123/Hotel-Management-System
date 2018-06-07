@@ -63,7 +63,6 @@ public class GuestController {
 	public String saveGuest (@Valid @ModelAttribute("guest") Guest theGuest, BindingResult bindingResult, Model theModel) {
 
 		if(bindingResult.hasErrors()) {
-			System.out.println(bindingResult);
 			List<Room> vacantRooms = guestService.getVacantRooms();
 			Room firstRoomOnList = vacantRooms.get(0);
 			LinkedHashMap<String, Room> vacantRoomsMap = populateRoomsMap(vacantRooms);

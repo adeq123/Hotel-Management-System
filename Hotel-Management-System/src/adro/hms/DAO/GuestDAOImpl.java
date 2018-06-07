@@ -61,7 +61,6 @@ public class GuestDAOImpl implements GuestDAO {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery("select g from Guest g where g.checkoutDate <= :tomorrow and g.isCheckedout = 1 order by checkoutDate", Guest.class); //sproboj bez class
 		query.setParameter("tomorrow", tomorrow);
-		
 		List<Guest> guests = query.getResultList();
 		
 		return guests;
