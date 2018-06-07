@@ -47,7 +47,7 @@
 									<!--internal table cell one  -->
 									<td class="statusTable">
 										<!--status table  -->
-										<table class="statusLeft">
+										<table class="billTable">
 											<!-- Heading  -->
 											<tr>
 												<th>Rooms:</th>

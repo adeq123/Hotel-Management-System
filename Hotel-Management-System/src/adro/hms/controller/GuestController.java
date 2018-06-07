@@ -159,6 +159,27 @@ public class GuestController {
 	
 		return "addGuestForm";
 	}
+	@GetMapping("/bill")
+	public String showBill(@RequestParam("guestId") int id, Model theModel) {
+		Guest guest = guestService.getGuestById(id);
+		Room room;
+		int nightsNumber = guestService.getNightsNumber(guest);
+		
+		if(guest.getIsCheckedout()) {
+		room = guest.getLastCheckedoutRoom();
+		}else {
+		room = guest.getRoom();
+		}
+		
+		double rate = room.getRate();
+		theModel.addAttribute("guest", guest);
+		theModel.addAttribute("room", room);
+		theModel.addAttribute("nightsNumber", nightsNumber);
+		theModel.addAttribute("rate",rate);
+		theModel.addAttribute("tax", Room.TAX*rate*nightsNumber);
+		theModel.addAttribute("total", nightsNumber*rate*(1+Room.TAX));
+		return "guestBill";
+	}
 	/**
 	 * Maps the rooms list to to Map where a key is the room id (from DataBase) and the value is the room itself.
 	 * In that configuration, we will get an id out of the drop down in the form.

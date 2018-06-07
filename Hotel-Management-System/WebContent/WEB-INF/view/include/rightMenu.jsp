@@ -16,7 +16,7 @@
 	<div class = "toDoHead">To be done:</div>	
 		<c:forEach var="tempToDo" items="${toDo}">
 			<tr>
-				<td>
+				<td style="padding: 3px;">
 					<li><div class="todo">${tempToDo.task}</div></li>
 				</td>
 

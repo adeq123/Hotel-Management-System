@@ -40,7 +40,6 @@
 					</td>
 					<td style="vertical-align: baseline ;" align="center">
 						<!--Main content  -->
-						<!--table with guests  -->
 						
 						<table class="guestList">
 						<tr>
@@ -53,10 +52,16 @@
 								<th class =  "list">Phone Number</th>
 								<th class =  "list">Check in date</th>
 								<th class =  "list">Checkout date</th>
+								<th class =  "list">Action</th>
 							</tr>
 							<!-- loop over and print out customers  -->
 							<c:forEach var="tempGuest" items="${guestList}">
-								
+							
+						<!--construct an billing link with customer id  -->
+						<c:url var="billLink" value="/guest/bill">
+							<c:param name="guestId" value="${tempGuest.id}" />
+						</c:url>
+						
 								<tr class="list">
 									<td class =  "list">${tempGuest.firstName}</td>
 									<td class =  "list">${tempGuest.lastName}</td>
@@ -64,6 +69,7 @@
 									<td class =  "list">${tempGuest.phoneNumber}</td>
 									<td class =  "list">${tempGuest.checkinDate}</td>
 									<td class =  "list">${tempGuest.checkoutDate}</td>
+									<td class =  "list"><a href="${billLink}">Bill</a></td>
 								</tr>
 							</c:forEach>
 						</table>

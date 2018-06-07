@@ -54,7 +54,7 @@ public class HotelStatusController {
 		Integer upcommingCheckOuts = 0;
 
 		for(Guest theGuest : guestList) {
-			if(!theGuest.isCheckedout()) {
+			if(!theGuest.getIsCheckedout()) {
 				numberOfGuests++;
 			}else {
 				if(theGuest.getCheckoutDate().isEqual(LocalDate.now()) || theGuest.getCheckoutDate().isBefore(LocalDate.now())) {

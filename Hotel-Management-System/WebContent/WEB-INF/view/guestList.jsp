@@ -37,7 +37,7 @@
 						<!--Left Side Menu  -->
 						<jsp:include page="include/guestLeftMenu.jsp"/>
 					</td>
-					<td style="vertical-align: baseline ;" align="center">
+					<td style="vertical-align: baseline;" align="center">
 						<!--Main content  -->
 						<!--table with guests  -->
 						
@@ -58,8 +58,8 @@
 							<c:forEach var="tempGuest" items="${guestList}">
 
 								<!--construct an cheout link with customer id  -->
-								<c:url var="checkoutLink" value="/guest/checkout/${tempGuest.id}">
-									
+								<c:url var="checkoutLink" value="/guest/checkout">
+									<c:param name="guestId" value="${tempGuest.id}" />
 								</c:url>
 
 								<!--construct an update link with customer id  -->
@@ -67,13 +67,19 @@
 									<c:param name="guestId" value="${tempGuest.id}" />
 								</c:url>
 								
+									<!--construct an billing link with customer id  -->
+								<c:url var="billLink" value="/guest/bill">
+									<c:param name="guestId" value="${tempGuest.id}" />
+								</c:url>
+								
 								<tr class="list">
 									<td class =  "list">${tempGuest.firstName}</td>
 									<td class =  "list">${tempGuest.lastName}</td>
-									<td class =  "list">${tempGuest.room}</td>
+									<td class =  "list">${tempGuest.room.number}</td>
 									<td class =  "list">${tempGuest.phoneNumber}</td>
 									<td class =  "list">${tempGuest.checkoutDate}</td>
-									<td class =  "list"><a href="${checkoutLink}">Checkout</a> | <a href="${updateLink}">Update</a></td>
+									<td class =  "list"><a href="${checkoutLink}">Checkout</a> | <a href="${updateLink}">Update</a> | <a href="${billLink}">Bill</a>
+									</td>
 								</tr>
 							</c:forEach>
 						</table>

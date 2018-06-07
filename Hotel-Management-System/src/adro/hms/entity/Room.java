@@ -16,6 +16,8 @@ import javax.persistence.Table;
 @Table(name = "room")
 public class Room {
 	
+	public static final double TAX = 0.24;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -39,7 +41,9 @@ public class Room {
 					}
 	)
 	private List<Guest> occupants;
-
+	
+	
+	
 	public Room() {
 		
 	}
@@ -98,5 +102,13 @@ public class Room {
 		return standard + " : " + number;
 	}
 
-	
+	public double getRate() {
+		if(standard.equals("standard")) {
+			return 100.0;
+		}else if(standard.equals("business")) {
+			return 125.0;
+		}
+		return 150.0;
+	}
+
 }

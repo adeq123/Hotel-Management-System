@@ -15,18 +15,16 @@
 	href="${pageContext.request.contextPath}/resources/css/common.css" />
 </head>
 
-<!--link to background  -->
-<c:url var="backGroundLink" value = "/resources/images/hotel-page-background.jpg"></c:url>
 
-<body background = "${backGroundLink}">
-	<table border="1" height = "90%" width="75%" align="center">
-		<tr>
+<body>
+	<table class="main">
+		<tr class="header">
 			<td height="80px">
 				<!-- HEADER  -->
 				<jsp:include page="include/header.jsp"/>
 			</td>
 		</tr>
-		<tr>
+		<tr class="upperMenu">
 			<td height="25px">
 				<!-- Upper Menu  -->
 				<jsp:include page="include/upperMenu.jsp"/>
@@ -35,22 +33,24 @@
 		<tr>
 			<td height="350px">
 				<!-- Page content table -->
-				<table border = "1" height = "100%" width="100%" align="left">
+				<table class="content">
 					<td width = "100px">
 						<!--Left Side Menu  -->
 						<jsp:include page="include/roomLeftMenu.jsp"/>
 					</td>
-					<td>
+					<td style="vertical-align: baseline ;" align="center">
 						<!--Main content  -->
 						<!--table with guests  -->
-						<div>Occupied rooms: </div> <br>
-						<table>
+						<table class="roomList">
+						<tr>
+						<div class="description">Occupied rooms: </div> <br>
+						</tr>
 							<tr>
-								<th>Number </th>
-								<th>Standard </th>
-								<th>Occupied </th>
-								<th>Occupants </th>
-								<th>Action </th>
+								<th class =  "list">Number </th>
+								<th class =  "list">Standard </th>
+								<th class =  "list">Occupied </th>
+								<th class =  "list">Occupants </th>
+								<th class =  "list">Action </th>
 
 							</tr>
 							<!-- loop over and print out customers  -->
@@ -62,11 +62,11 @@
 								</c:url>
 
 								
-								<tr>
-									<td>${tempRoom.number}</td>
-									<td>${tempRoom.standard}</td>
-									 <td>${tempRoom.isOccupied}</td> 
-									<td>
+								<tr class =  "list">
+									<td class =  "list">${tempRoom.number}</td>
+									<td class =  "list">${tempRoom.standard}</td>
+									 <td class =  "list">${tempRoom.isOccupied}</td> 
+									<td class =  "list">
 									<c:forEach var="tempGuest" items="${tempRoom.occupants}">
 									${tempGuest.firstName} ${tempGuest.lastName} 
 									</c:forEach>

@@ -1,6 +1,7 @@
 package adro.hms.services;
 
 
+import java.time.LocalDate;
 import java.util.List;
 import javax.transaction.Transactional;
 
@@ -11,7 +12,7 @@ import adro.hms.DAO.GuestDAO;
 import adro.hms.DAO.RoomDAO;
 import adro.hms.entity.Guest;
 import adro.hms.entity.Room;
-
+import java.time.temporal.ChronoUnit;
 @Service
 public class GuestServiceImpl implements GuestService{
 
@@ -70,6 +71,21 @@ public class GuestServiceImpl implements GuestService{
 	@Transactional
 	public List<Room> getOccupiedRooms() {
 		return roomDAO.getOccupiedRooms();
+	}
+
+	@Override
+	public int getNightsNumber(Guest guest) {
+		LocalDate checkIn = guest.getCheckinDate();
+		LocalDate checkOut;
+		
+		if(guest.getIsCheckedout()) {
+			checkOut = guest.getCheckoutDate();
+		}else {
+			checkOut = LocalDate.now();
+		}
+		
+		int nightsNumber = (int) ChronoUnit.DAYS.between(checkIn, checkOut);
+		return nightsNumber;
 	}
 
 	

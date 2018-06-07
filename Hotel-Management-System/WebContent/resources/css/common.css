@@ -256,6 +256,18 @@ tr.list:hover {background-color: #f5f5f5;}
     display: inline-block;
     font-size: 10px;
 }
+
+table.billTable{
+	text-align: left;
+	table-layout: auto;
+	border-collapse: collapse;
+	font-size: 16px;
+	line-height: 150%;
+	
+}
+tr.bill{
+	padding-right: 1em;
+}
 tab1 {
 	padding-left: 4em;
 }

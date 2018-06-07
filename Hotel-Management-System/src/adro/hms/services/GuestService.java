@@ -14,4 +14,5 @@ public interface GuestService {
 	public void saveUpdateRoom(Room theRoom);
 	public Room getRoomById(int id);
 	public Guest getGuestById(int id);
+	public int getNightsNumber(Guest guest);
 }

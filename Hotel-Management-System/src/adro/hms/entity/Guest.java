@@ -151,7 +151,7 @@ public class Guest {
 	}
 	
 	
-	public boolean isCheckedout() {
+	public boolean getIsCheckedout() {
 		return isCheckedout;
 	}
 
