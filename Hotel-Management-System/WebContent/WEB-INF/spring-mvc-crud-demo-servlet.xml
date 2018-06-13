@@ -23,9 +23,9 @@
 		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 		<property name="converters">
 			<set>
-				<bean class="adro.hms.controller.StringToRoomConverter" />
-				<bean class="adro.hms.controller.RoomToStringConverter" />
-				<bean class="adro.hms.controller.StringToLocalDateConverter" />
+				<bean class="adro.hms.controller.converters.StringToRoomConverter" />
+				<bean class="adro.hms.controller.converters.RoomToStringConverter" />
+				<bean class="adro.hms.controller.converters.StringToLocalDateConverter" />
 			</set>
 		</property>
 	</bean>

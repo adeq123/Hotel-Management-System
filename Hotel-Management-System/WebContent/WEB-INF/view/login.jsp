@@ -42,9 +42,8 @@
 					<td align="center" >
 						<!--Main content  -->
 						<!--table with rooms  -->
-						<%-- <b><%= request.getParameter("loginError") %></b --%>
 						
-						<div class="error">${loginError}</div>
+						<div class="error"><b>${loginError}</b></div>
 						<form action = '' method = "post">
 						<table class="loginForm">
 						<tr>

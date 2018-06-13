@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -159,6 +160,7 @@ public class GuestController {
 	
 		return "addGuestForm";
 	}
+	
 	@GetMapping("/bill")
 	public String showBill(@RequestParam("guestId") int id, Model theModel) {
 		Guest guest = guestService.getGuestById(id);
@@ -180,12 +182,39 @@ public class GuestController {
 		theModel.addAttribute("total", nightsNumber*rate*(1+Room.TAX));
 		return "guestBill";
 	}
+	
+	@PostMapping("bill/save")
+	public String saveBill(@RequestParam("guestId") int id, Model theModel) {
+		Guest guest = guestService.getGuestById(id);
+		theModel.addAttribute("guestId", id);
+		guestService.saveBillPDF(guest);
+		return "redirect:/guest/list";
+	}
 	/**
 	 * Maps the rooms list to to Map where a key is the room id (from DataBase) and the value is the room itself.
 	 * In that configuration, we will get an id out of the drop down in the form.
 	 * @param rooms
 	 * @return
 	 */
+	
+	@PostMapping("/bill/mail")
+	public String sendBillByMail(@RequestParam("guestId") int id, @RequestParam("email") String email, Model theModel) {
+		
+		Guest guest = guestService.getGuestById(id);
+		try {
+			guestService.sendBillByMail(guest, email);
+			} catch(javax.mail.internet.AddressException | javax.mail.SendFailedException e){
+			theModel.addAttribute("error", "Incorrect emial adress!");
+			e.printStackTrace();
+		    } catch (MessagingException e) {
+		    	theModel.addAttribute("error", "Something wrong with your message! sorry...");
+				e.printStackTrace();
+			}
+			List<Guest> guestList = guestService.getActualGuests();
+			theModel.addAttribute("guestList", guestList);				
+		
+		return "guestList";
+	}
 	private LinkedHashMap<String, Room> populateRoomsMap(List<Room> rooms){
 
 		if(rooms == null || rooms.size() == 0) {

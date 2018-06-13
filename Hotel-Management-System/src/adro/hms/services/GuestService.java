@@ -1,6 +1,9 @@
 package adro.hms.services;
 
 import java.util.List;
+
+import javax.mail.MessagingException;
+
 import adro.hms.entity.Guest;
 import adro.hms.entity.Room;
 
@@ -15,4 +18,6 @@ public interface GuestService {
 	public Room getRoomById(int id);
 	public Guest getGuestById(int id);
 	public int getNightsNumber(Guest guest);
+	public void saveBillPDF(Guest guest);
+	public void sendBillByMail(Guest guest, String email) throws MessagingException;
 }

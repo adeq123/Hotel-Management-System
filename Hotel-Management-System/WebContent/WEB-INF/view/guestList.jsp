@@ -42,6 +42,7 @@
 						<!--table with guests  -->
 						
 						<br>
+						<div class="error"><b>${error}</b></div>
 						<table class="guestList">
 						<tr>
 						<div class="description">Hotel guests list:</div><br>

@@ -43,6 +43,12 @@
 								<c:url var="checkoutLink" value="/guest/checkout">
 								<c:param name="guestId" value="${guest.id}" />
 								</c:url>
+								
+								<!--construct an print link with customer id  -->
+								<c:url var="printLink" value="/guest/bill/save?guestId=${guest.id}">
+								<c:param name="guestId" value="${guest.id}" />
+								</c:url>
+								
 							<table style="vertical-align: top;" align="center" class = "billTable">
 								<tr >
 									<td colspan="4"><div class="description">Details:</div></td>
@@ -93,6 +99,24 @@
 											</c:otherwise>
 										</c:choose></td>
 								</tr>
+								
+								<tr>
+								<td> 
+								<form action="${pageContext.request.contextPath}/guest/bill/save" method="post">
+								<input type="hidden" name="guestId" value="${guest.id}" />
+							    <input type="submit" name="save" value="Save" />	    
+								</form>
+								</td>
+								
+								<td> 
+								<form action="${pageContext.request.contextPath}/guest/bill/mail" method="post">
+								<input type="hidden" name="guestId" value="${guest.id}" />
+								<input type="text" name="email" placeholder="E-mail adress"/>
+							    <input type="submit" name="mail" value="Send by @" />	    
+								</form>
+								</td>
+								</tr>
+								
 							</table><td width="100px">
 							<!--Right Side Menu  --> 
 							<jsp:include page="include/rightMenu.jsp" />
