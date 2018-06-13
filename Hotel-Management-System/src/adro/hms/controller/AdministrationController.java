@@ -31,7 +31,7 @@ public class AdministrationController {
 	@GetMapping("/")
 	public String checkAdminAndShow(HttpSession session, Model theModel) {
 		User loggedInUser = (User) session.getAttribute("loggedInUser");
-		if(loggedInUser != null || loggedInUser.getFirstName().equals("admin")) {
+		if(loggedInUser != null && loggedInUser.getFirstName().equals("admin")) {
 			
 			List<User> userList = adminService.getAllUsers();
 			theModel.addAttribute("userList", userList);
