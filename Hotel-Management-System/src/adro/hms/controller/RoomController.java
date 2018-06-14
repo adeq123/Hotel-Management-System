@@ -14,7 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import adro.hms.entity.Guest;
 import adro.hms.entity.Room;
 import adro.hms.services.RoomService;
-
+/**
+ * This is a  Controller part of Spring MVC framework based application. It is responsible for Room tab in the app
+ * 
+ * @author ADRO
+ *
+ */
 @Controller
 @RequestMapping("/room")
 public class RoomController {
@@ -22,6 +27,12 @@ public class RoomController {
 	@Autowired
 	private RoomService roomService;
 	
+	/**
+	 * The method fetch the list of vacant rooms and sends it over 
+	 * to the view
+	 * @param theModel, Model to be send to the view
+	 * @return, view name to be displayed
+	 */
 	@GetMapping("/list")
 	public String roomList(Model theModel) {
 		
@@ -31,6 +42,12 @@ public class RoomController {
 		
 	}
 	
+	/**
+	 * The method fetch the list of occupied rooms and sends it over 
+	 * to the view
+	 * @param theModel, Model to be send to the view
+	 * @return, view name to be displayed
+	 */
 	@GetMapping("/occupiedRoomlist")
 	public String occupiedRoomList(Model theModel) {
 		
@@ -40,6 +57,12 @@ public class RoomController {
 		
 	}
 	
+	/**
+	 * The method checkouts all of the guests which stays
+	 * in the room with ID given
+	 * @param theRoomId, id of the room which guests should be checkedout
+	 * @return, view name to be displayed
+	 */
 	@GetMapping("/checkout")
 	public String checkoutRoom (@RequestParam("roomId") Integer theRoomId) {
 		System.out.println("I am mapped!!!");

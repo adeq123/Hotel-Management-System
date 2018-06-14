@@ -26,15 +26,25 @@ import adro.hms.entity.Guest;
 import adro.hms.entity.Room;
 import adro.hms.services.GuestService;
 import adro.hms.services.RoomService;
-
+/**
+ * This is a  Controller part of Spring MVC framework based application. It is responsible for Administration tab in the app
+ * 
+ * @author ADRO
+ *
+ */
 
 @Controller
 @RequestMapping("/guest")
 public class GuestController {
 
 	@Autowired
-	GuestService guestService;
+	private GuestService guestService;
 
+	/**
+	 * The method fetch the guest list and sends it over to the view
+	 * @param theModel
+	 * @return, view name to be displayed
+	 */
 	@GetMapping("/list")
 	public String guestList(Model theModel) {
 
@@ -44,6 +54,12 @@ public class GuestController {
 		return "guestList";
 	}
 
+	/**
+	 * The method creates empty Guest object (shell) and sends it over to the view
+	 * Where it is meant to be filled in with data entered by databinding.
+	 * @param theModel, data to be send to the view,
+	 * @return. view name, add guest form in this case
+	 */
 	@GetMapping("/showAddGuest")
 	public String showAddGuest(Model theModel) {
 
@@ -59,7 +75,15 @@ public class GuestController {
 		
 		return "addGuestForm";
 	}
-
+/**
+ * The method allows to save the guest in the database. There is a validation added according to the specification form
+ * Guest class. If binding was successful then the guest is added and we are redirected to the guest list view. Other wise
+ * the add guest form is duplayed with errors on red.
+ * @param theGuest, the guest binded, to be  added to the DB
+ * @param bindingResult, contains the information on whether binding was successful or not. 
+ * @param theModel, data to be send to the view
+ * @return, view name 
+ */
 	@PostMapping("/saveGuest")
 	public String saveGuest (@Valid @ModelAttribute("guest") Guest theGuest, BindingResult bindingResult, Model theModel) {
 
@@ -81,7 +105,15 @@ public class GuestController {
 			
 		}
 	}
-
+/**
+ * The method allows to check out the guest with a given ID.
+ * The checkout contains: setting the checkout date as todays day, set current room to null, set 
+ * Last checkout room to the room during checkout, set set checkout to true and delete occupants from the room.
+ * Moreover it will put occupied field in the room object to flase if there is no more guests there
+ * @param theId, the id of the guest to be displayed
+ * @param theModel, 
+ * @return, redirect to the guest list view
+ */
 	@GetMapping("/checkout")
 	public String checkoutGuest(@RequestParam("guestId") int theId, Model theModel) {
 		
@@ -104,7 +136,12 @@ public class GuestController {
 		
 		return "redirect:/guest/list";
 	}
-
+/**
+ * The method allows to update the guest info. 
+ * @param theId, the id of the guest to be updated.
+ * @param theModel, contains the data to be send over to the view
+ * @return, view containing a form with prefiled fields according to data from the guest
+ */
 	@GetMapping("/update")
 	public String udpateGuest(@RequestParam("guestId") int theId, Model theModel) {
 		Guest theGuest = guestService.getGuestById(theId);
@@ -122,6 +159,14 @@ public class GuestController {
 		return "addGuestForm";
 	}
 	
+	/**
+	 * The method finds the room with a given id, and then sends it to the add guest form as selected room (it
+	 * is not possible to select any other room). Then you can fill in the guest data and save it. The guest 
+	 * initially created as empty. 
+	 * @param theRoomId
+	 * @param theModel
+	 * @return
+	 */
 	@GetMapping("/checkin")
 	public String checkinGuestToSpecificRoom(@RequestParam("roomId") int theRoomId, Model theModel) {
 		Guest theGuest = new Guest();
@@ -131,6 +176,11 @@ public class GuestController {
 		return "addGuestForm";
 	}
 	
+	/**
+	 * The method fetch the checked out guest list and sends it over to the view
+	 * @param theModel
+	 * @return, view name to be displayed
+	 */
 	@GetMapping("/archivedGuestsList")
 	public String archivedGuests(Model theModel) {
 		
@@ -141,6 +191,12 @@ public class GuestController {
 		
 	}
 	
+	/**
+	 * The method creates the empty guest which is send to view - a form that will be used to specify the
+	 * info about the guest. 
+	 * @param theModel
+	 * @return
+	 */
 	@GetMapping("/checkInToOccupiedRoom")
 	public String checkInToOccupiedRoom(Model theModel) {
 		
@@ -190,12 +246,7 @@ public class GuestController {
 		guestService.saveBillPDF(guest);
 		return "redirect:/guest/list";
 	}
-	/**
-	 * Maps the rooms list to to Map where a key is the room id (from DataBase) and the value is the room itself.
-	 * In that configuration, we will get an id out of the drop down in the form.
-	 * @param rooms
-	 * @return
-	 */
+
 	
 	@PostMapping("/bill/mail")
 	public String sendBillByMail(@RequestParam("guestId") int id, @RequestParam("email") String email, Model theModel) {
@@ -215,6 +266,13 @@ public class GuestController {
 		
 		return "guestList";
 	}
+	
+	/**
+	 * Maps the rooms list to to Map where a key is the room id (from DataBase) and the value is the room itself.
+	 * In that configuration, we will get an id out of the drop down in the form.
+	 * @param rooms
+	 * @return
+	 */
 	private LinkedHashMap<String, Room> populateRoomsMap(List<Room> rooms){
 
 		if(rooms == null || rooms.size() == 0) {
@@ -227,6 +285,10 @@ public class GuestController {
 		return roomsMap;
 	}
 	
+	/**
+	 * The method is run before each request and it deletes the white spaces form the form fields.
+	 * @param dataBinder
+	 */
 	@InitBinder
 	public void initBinder(WebDataBinder dataBinder) {
 		StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
