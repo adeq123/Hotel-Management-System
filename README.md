@@ -1,19 +1,17 @@
 # Hotel-Management-System
-Hotem Management System developed to practice SpringMVC and Hibernate skills;
+The application allows to manage a small hotel. You can check in, checkout guests as well as view, print, email the bill. Room management is included. The app gives you good overview on what is happening in the hotel and shows you the actions that needs to be taken in the nearest future (To Do List). The database used is MySQL and Hibernate ORM is utilized to communicate with it. Spring MVC technology is integrated in the project
 
 Download this project from: https://github.com/adeq123/CRM-demo/
 
 ## Motivation
-This respository was created as a project from Udemy Spring-Hibernate tutorial.
+This project developed to practice my SpringMVC and Hibernate skills.
 
 ## General description
-This is a simple Web application integrating two main technologies: Spring MVC and Hibernate It also integrates Service Fascade design pattern.  
-
+This is a Web application integrating two main technologies: Spring MVC and Hibernate. It also inculdes Service Fascade design pattern.  
 ## Detailed description & Features
-The application is a simple CRUD application allowing to Create, Read, Update, Delete records fro database. It is a Web application where
-you manage a list of clients (CRM - Customer Relationship Management). The database used is MySQL and Hibernate ORM is used to communicate with it.
-The Architecture is described below.
+The application starts with Login page. You have to registered user to use the programme. If credentails entered are not correct then you will be informed about that fact. 
 
+![](https://github.com/adeq123/Hotel-Management-System/blob/master/Hotel-Management-System/readme_images/login.png)
 ### Architecture
 
 The browser sends the request to the Controller (Spring MVC). The controller find the method based on mapping specified (eg. @ReguestMapping).
