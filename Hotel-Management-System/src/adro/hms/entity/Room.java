@@ -11,6 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ * The class models the generic Room from the hotel. The annotations included allows to store the object as an entity in the DB.
+ * @author ADRO
+ */
 
 @Entity
 @Table(name = "room")
@@ -101,7 +105,10 @@ public class Room {
 	public String toString () {
 		return standard + " : " + number;
 	}
-
+/**
+ * Returns the rate of the hotel depending on the standard. The rates are hardcoded.
+ * @return
+ */
 	public double getRate() {
 		if(standard.equals("standard")) {
 			return 100.0;

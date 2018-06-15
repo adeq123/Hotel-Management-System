@@ -14,6 +14,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+/**
+ * The class models the Guest of the hotel. The annotations included allows to store the object as an entity in the DB.
+ * @author ADRO
+ */
 
 @Entity
 @Table(name="guest")

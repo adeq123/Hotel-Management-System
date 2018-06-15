@@ -9,8 +9,13 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+/**
+ * The class models the generic user of the application. The annotations included allows to store the object as an entity in the DB.
+ * @author ADRO
+ */
 @Entity
 public class User {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int id;

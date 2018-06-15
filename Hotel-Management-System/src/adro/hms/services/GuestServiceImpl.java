@@ -26,6 +26,12 @@ import adro.hms.services.helper.PDFPrinter;
 
 
 import java.time.temporal.ChronoUnit;
+/**
+ * It's a service part of Service Facade Pattern. Suppling useful services to Guest Controller and implementing the business logic
+ * @author ADRO
+ *
+ */
+
 @Service
 public class GuestServiceImpl implements GuestService{
 
@@ -35,24 +41,27 @@ public class GuestServiceImpl implements GuestService{
 	@Autowired
 	private RoomDAO roomDAO;
 	
+	/**
+	 * @see GuestDAO
+	 */
 	@Override
 	@Transactional
 	public List<Guest> getActualGuests() {
 		return guestDAO.getActualGuests();
 	}
 	
+	/**
+	 * @see GuestDAO
+	 */
 	@Override
 	@Transactional
 	public Guest getGuestById(int id) {
 		return guestDAO.getGuestById(id);
 	}
 
-	@Override
-	@Transactional
-	public List<Room> getVacantRooms() {
-		return roomDAO.getVacantRooms();
-	}
-
+	/**
+	 * @see GuestDAO
+	 */
 	@Override
 	@Transactional
 	public void saveUpdateGuest(Guest theGuest) {
@@ -60,12 +69,27 @@ public class GuestServiceImpl implements GuestService{
 		
 	}
 
+	/**
+	 * @see RoomDAO
+	 */
+	@Override
+	@Transactional
+	public List<Room> getVacantRooms() {
+		return roomDAO.getVacantRooms();
+	}
+
+	/**
+	 * @see RoomDAO
+	 */
 	@Override
 	@Transactional
 	public Room getRoomById(int id) {
 		return roomDAO.getRoomById(id);
 	}
 
+	/**
+	 * @see RoomDAO
+	 */
 	@Override
 	@Transactional
 	public void saveUpdateRoom(Room theRoom) {
@@ -73,19 +97,28 @@ public class GuestServiceImpl implements GuestService{
 		
 	}
 
-	@Override
-	@Transactional
-	public List<Guest> getArchivedGuests() {
-		
-		return guestDAO.getCheckedoutGuests();
-	}
-
+	/**
+	 * @see RoomDAO
+	 */
 	@Override
 	@Transactional
 	public List<Room> getOccupiedRooms() {
 		return roomDAO.getOccupiedRooms();
 	}
+	
+	/**
+	 * @see GuestDAO
+	 */
+	@Override
+	@Transactional
+	public List<Guest> getArchivedGuests() {	
+		return guestDAO.getCheckedoutGuests();
+	}
 
+	/**
+	 * Returns number of nights that guest stayed in the hotel
+	 * @param Guest, guest to be examine
+	 */
 	@Override
 	public int getNightsNumber(Guest guest) {
 		LocalDate checkIn = guest.getCheckinDate();
@@ -101,6 +134,11 @@ public class GuestServiceImpl implements GuestService{
 		return nightsNumber;
 	}
 
+	/**
+	 * The method saves the guest bill in C:\\bills
+	 * 
+	 * @param the guest that we need a bill for
+	 */
 	@Override
 	public void saveBillPDF(Guest guest) {
 		
@@ -128,7 +166,12 @@ public class GuestServiceImpl implements GuestService{
 	}
 
 
-
+	/**
+	 * The method allows us to send the bill by email
+	 * 
+	 * @guest the Guest that we need a bill for
+	 * @email email adress to be sent to
+	 */
 	@Override
 	public void sendBillByMail(Guest guest, String email) throws MessagingException {
 		Room room;
@@ -152,6 +195,12 @@ public class GuestServiceImpl implements GuestService{
 
 	}
 
+	/**
+	 * Constructs the bill in String format for a given Guest Room pair
+	 * @param guest, guest that we need a bill for
+	 * @param room, room that the guest is staying in
+	 * @return, String representation of the bill
+	 */
 	private String constructBill(Guest guest, Room room) {
 		int nightsNumber = getNightsNumber(guest);
 		String bill = ""

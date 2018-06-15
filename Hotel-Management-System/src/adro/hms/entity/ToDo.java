@@ -7,6 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * The class models the generic to do action for the staff of the hotel. The annotations included allows to store the object as an entity in the DB.
+ * @author ADRO
+ */
+
 @Entity
 @Table(name = "toDo")
 public class ToDo {
