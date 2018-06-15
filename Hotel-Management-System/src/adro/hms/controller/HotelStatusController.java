@@ -12,6 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import adro.hms.entity.Guest;
 import adro.hms.entity.Room;
 import adro.hms.services.HotelStatusService;
+/**
+ * This is a  Controller part of Spring MVC framework based application. It is responsible for Hotel Status tab in the app
+ * 
+ * @author ADRO
+ *
+ */
 
 @Controller
 @RequestMapping("/hotelStatus")
@@ -20,6 +26,21 @@ public class HotelStatusController {
 	@Autowired
 	private HotelStatusService hotelStatusService;
 
+	/**
+	 * This method generates all of the info required on hotel status page:
+	 * - number of rooms
+	 * - number of occupied rooms
+	 * - number of vacant rooms
+	 * - number of vacant standard rooms
+	 * - number of vacant business rooms
+	 * - number of vacant premium rooms
+	 * - number of guests checked in
+	 * - number of upcomming chekcouts 
+	 * 
+	 * and then sends it through the model to the view
+	 * @param theModel, data model to be send to the view
+	 * @return, name of the view
+	 */
 	@GetMapping("/")
 	public String showHotelStatus(Model theModel) {
 
